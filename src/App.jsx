@@ -10,13 +10,13 @@ import Contact from './pages/Contact';
 function App() {
   return (
     <div className="App">
-      <Navbar />
       <Routes>
         <Route exact path="/" element={<Home />} />
         <Route path="/pottery" element={<Pottery />} />
         <Route path="/products" element={<Products />} />
         <Route path="/Contact" element={<Contact />} />
       </Routes>
+      <Navbar />
     </div>
   );
 }

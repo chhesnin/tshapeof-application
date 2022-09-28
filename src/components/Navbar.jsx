@@ -13,7 +13,7 @@ function Navbar() {
     { name: 'contact', render: '聯絡我們' }
   ];
   const [mounted, setMounted] = useState('');
-  function handleChangePage(name) {
+  function handleTogglePage(name) {
     setMounted(name);
   }
   const linkElements = links.map((link) => (
@@ -21,7 +21,7 @@ function Navbar() {
       key={link.name}
       to={`/${link.name}`}
       className={mounted === link.name ? 'link mounted' : 'link'}
-      onClick={() => handleChangePage(link.name)}>
+      onClick={() => handleTogglePage(link.name)}>
       {link.render}
     </Link>
   ));
