@@ -12,7 +12,7 @@
     width: 300px;
     top: 50px;
   }
-  .container {
+  .nav-container {
     display: flex;
     flex-direction: column;
     .link {
@@ -21,6 +21,7 @@
       padding: 16px;
       text-decoration: none;
       color: var(--black);
+      font-weight: 300;
       letter-spacing: 1.5px;
       transition: 0.3s;
       &:hover {
@@ -40,7 +41,7 @@
       background-color: var(--132-white);
       .brand-icon {
         font-size: 14px;
-        margin: 18px;
+        margin: 20px;
         color: var(--black);
         transition: 0.3s;
         &:hover {

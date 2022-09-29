@@ -28,7 +28,7 @@ function Navbar() {
   return (
     <nav className="navbar">
       <img src={logo} alt="" className="logo" />
-      <div className="container">
+      <div className="nav-container">
         {linkElements}
         <footer>
           <a href="https://www.facebook.com/T.shape.of/" target="_blank" rel="noreferrer">
