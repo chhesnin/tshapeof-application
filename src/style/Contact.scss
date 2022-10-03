@@ -2,54 +2,54 @@
   left: 296px;
   width: calc(100% - 296px);
   height: 100vh;
-  background-image: url(../assets/contact-bgi-light.png);
+  background-image: url(../assets/contact-bgi-light-green.png);
   overflow: hidden;
-  .block {
-    position: absolute;
-    width: 50px;
-    height: 50px;
-    border: 1px solid var(--black);
-  }
-  form {
-    display: flex;
-    flex-direction: column;
-    label {
-      margin-top: 18px;
-      font-weight: 400;
-      letter-spacing: 1.5px;
+  .container {
+    width: 45%;
+    @media screen and (max-width:880px) {
+      width: 70%;
     }
-    input, textarea {
-      width: 100%;
-      padding: 3px 8px;
-      font-size: 14px;
-      line-height: 28px;
-      letter-spacing: 0.3px;
-      margin-top: 5px;
-      border: 2px solid var(--132-white);
-      border-radius: 5px;
-      &:focus {
-        outline: none;
-        border: 2px solid var(--518-red);
-        border-radius: 5px;
+    form {
+      display: flex;
+      flex-direction: column;
+      label {
+        margin-top: 18px;
+        font-weight: 400;
+        letter-spacing: 1.5px;
+      }
+      input, textarea {
+        width: 100%;
+        padding: 3px 8px;
+        font-size: 14px;
+        line-height: 28px;
+        letter-spacing: 0.3px;
+        margin-top: 5px;
+        border: 2px solid var(--132-white);
+        border-radius: 6px;
+        &:focus {
+          outline: none;
+          border: 2px solid var(--518-red);
+          border-radius: 6px;
+        }
+      }
+      button {
+        margin-top: 20px;
+        background-color: var(--518-red);
+        color: var(--132-white);
+        &:disabled {
+          pointer-events: none;
+          background-color: var(--132-white);
+          color: #aaa;
+          border: 1px solid #aaa;
+        }
       }
     }
-    button {
-      margin-top: 20px;
-      background-color: var(--518-red);
-      color: var(--132-white);
-      &:disabled {
-        pointer-events: none;
-        background-color: var(--132-white);
-        color: #aaa;
-        border: 1px solid #aaa;
-      }
+    h6.alert {
+      text-align: center;
+      margin-top: 16px;
+      font-weight: 500;
+      letter-spacing: 1px;
+      color: var(--222-green);
     }
-  }
-  h6 {
-    text-align: center;
-    margin-top: 16px;
-    font-weight: 500;
-    letter-spacing: 1px;
-    color: var(--222-green);
   }
 }

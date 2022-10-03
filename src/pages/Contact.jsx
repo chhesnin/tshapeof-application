@@ -86,7 +86,7 @@ function Contact() {
             提交
           </button>
         </form>
-        {isSubmit && <h6>表單已提交！</h6>}
+        {isSubmit && <h6 className="alert">表單已提交！</h6>}
       </div>
     </main>
   );

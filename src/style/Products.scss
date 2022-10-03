@@ -1,9 +1,72 @@
 .products {
   left: 296px;
   width: calc(100% - 296px);
-  height: 100vh;
-  background-color: #ddd;
-  h1 {
-    margin: 0;
+  min-height: 100vh;
+  background-image: url(../assets/contact-bgi-light-green.png);
+  // background-color: var(--132-white);
+  
+  .cart {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    color: var(--222-green);
+    z-index: 1;
+    &:hover {
+      color: var(--518-red);
+    }
+  }
+  .container {
+    width: 70%;
+    text-align: center;
+    padding-bottom: 70px;
+    .products-container {
+      margin-top: 55px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-gap: 70px 50px;
+      @media screen and (max-width:1024px) { 
+        grid-template-columns: 1fr;
+      }
+    }
+  }
+  .cart-page {
+    // *pof位置的參照對象是視窗, poa是上層元素
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    min-height: 100%;
+    background: linear-gradient(0deg, rgba(#222, 0.9) 0%, rgba(#222, 1) 100%);
+    opacity: 0;
+    color: var(--132-white);
+    pointer-events: none;
+    transition: 0.3s;
+    .container {
+      width: 70%;
+      height: 100vh;
+      h1.title {
+        text-align: center;
+      }
+      .cart-item-container {
+        margin-top: 55px;
+      }
+      hr {
+        border-color: var(--518-red);
+        margin: 50px 0px;
+      }
+      .alert {
+        text-align: left;
+        margin-top: 50px;
+      }
+      .total {
+        text-align: right;
+        font-weight: 500;
+        letter-spacing: 1.5px;
+      }
+    }
+    &.opened {
+      opacity: 1;
+      pointer-events: auto;
+    }
   }
 }

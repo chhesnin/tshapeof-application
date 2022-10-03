@@ -1,0 +1,33 @@
+.cart-item {
+  color: var(--132-white);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  .delete {
+    &:hover {
+      color: var(--518-red);
+    }
+  }
+  .img-container {
+    border: 1px solid var(--132-white);
+    width: 150px;
+    height: 100px;
+    background-size: cover;
+    margin-left: 20px;
+    margin-right: auto;
+  }
+  .name {
+    margin-right: 60px;
+    margin-left: auto;
+    font-weight: 400;
+    letter-spacing: 1px;
+  }
+  .price {
+    font-weight: 400;
+    letter-spacing: 1.5px;
+  }
+  .total {
+    
+  }
+}
