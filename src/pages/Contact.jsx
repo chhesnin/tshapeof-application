@@ -1,40 +1,27 @@
 import '../style/Contact.scss';
-import { useState, useRef, useEffect } from 'react';
+import { useState, useEffect } from 'react';
+import useControlledComponent from '../hooks/useControlledComponent';
 
 // *line 13 use htmlFor=""+id="" && put input under label
 // *line 22 https://ithelp.ithome.com.tw/articles/10267360
 function Contact() {
-  const [form, setForm] = useState({
+  const initialForm = {
     name: '',
     email: '',
     message: ''
-  });
+  };
+  const { form, setForm, handleChange, ref } = useControlledComponent(initialForm);
   const [isDisable, setIsDisable] = useState(true);
   const [isSubmit, setIsSubmit] = useState(false);
-  const inputRef = useRef(null);
-  function handleChange(event) {
-    const { name, value } = event.target;
-    setForm((prevForm) => ({
-      ...prevForm,
-      [name]: value
-    }));
-  }
   function handleSubmit(event) {
     event.preventDefault();
     setIsSubmit(true);
     setTimeout(() => {
       setIsSubmit(false);
     }, 2000);
-    setForm({
-      name: '',
-      email: '',
-      message: ''
-    });
-    inputRef.current.focus();
+    setForm(initialForm);
+    ref.current.focus();
   }
-  useEffect(() => {
-    inputRef.current.focus();
-  }, []);
   useEffect(() => {
     if (form.name !== '' && form.email !== '' && form.message !== '') {
       setIsDisable(false);
@@ -47,28 +34,30 @@ function Contact() {
       <div className="container">
         <h1 className="title">
           聯絡我們
-          <span>| Contact Us</span>
+          <span className="subtitle">| Contact Us</span>
         </h1>
         <form onSubmit={handleSubmit}>
           <label htmlFor="name">
             姓名:
             <input
+              ref={ref}
               id="name"
               type="text"
               name="name"
               onChange={handleChange}
               value={form.name}
-              ref={inputRef}
+              placeholder="enter your name"
             />
           </label>
-          <label htmlFor="email">
+          <label htmlFor="email-contact">
             信箱:
             <input
-              id="email"
+              id="email-contact"
               type="email"
               name="email"
               onChange={handleChange}
               value={form.email}
+              placeholder="enter your email"
             />
           </label>
           <label htmlFor="message">
@@ -80,6 +69,7 @@ function Contact() {
               onChange={handleChange}
               value={form.message}
               rows="8"
+              placeholder="messages..."
             />
           </label>
           <button type="submit" disabled={isDisable}>

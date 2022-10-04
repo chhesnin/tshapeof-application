@@ -40,5 +40,8 @@
     font-weight: 400;
     margin: 12px 0px 0px 0px;
     text-align: center;
+    span.delete {
+      text-decoration: line-through;
+    }
   }
 }

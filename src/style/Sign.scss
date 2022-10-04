@@ -1,0 +1,58 @@
+.sign {
+  position: fixed;
+  top: 0;
+  left: 296px;
+  width: calc(100% - 296px);
+  height: 100vh;
+  background: linear-gradient(0deg, rgba(#222, 0.8) 0%, rgba(#222, 0.95) 100%);
+  display: flex;
+  justify-content: center;
+  padding-top: 165px;
+  opacity: 0;
+  pointer-events: none;
+  &.opened {
+    opacity: 1;
+    pointer-events: auto;
+  }
+  form {
+    width: 35%;
+    min-width: 300px;
+    padding: 0px 40px;
+    box-sizing: border-box;
+    text-align: center;
+    color: var(--132-white);
+    span.subtitle {
+      margin-right: 8px;
+    }
+    label {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      @media screen and (max-width:1000px) {
+        flex-direction: column;
+      }
+      input {
+        width: 80%;
+        @media screen and (max-width:1000px) {
+          width: 100%;
+        }
+      }
+    }
+    .buttons {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-gap: 20px;
+      margin-top: 36px;
+      button {
+        margin-top: 0;
+        &:hover {
+          border: 1px solid var(--132-white);
+        }
+      }
+    }
+    h6.alert {
+      color: var(--132-white);
+      margin-top: 26px;
+    }
+  }
+}

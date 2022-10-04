@@ -1,7 +1,10 @@
 import '../style/Product.scss';
+import { useContext } from 'react';
 import useHover from '../hooks/useHover';
+import Context from '../Context';
 
 function Product({ product, cartItems, toggleFavorite, addToCart, deleteFromCart }) {
+  const { MEMBER_DISCOUNT, user } = useContext(Context);
   const { isHover, ref } = useHover();
   function getHeartIcon() {
     let value;
@@ -27,6 +30,19 @@ function Product({ product, cartItems, toggleFavorite, addToCart, deleteFromCart
     return { icon, event };
   }
   const { icon, event } = handleAddIcon();
+  function getPriceText() {
+    if (user) {
+      return (
+        <>
+          <h5 className="price" style={{ textDecoration: 'line-through' }}>
+            NT ${product.price}
+          </h5>
+          <h5 className="price">會員價: NT${product.price * MEMBER_DISCOUNT}</h5>
+        </>
+      );
+    }
+    return <h5 className="price">NT ${product.price}</h5>;
+  }
   return (
     <div className="product">
       <div ref={ref} className="img-container" style={{ backgroundImage: `url(${product.url})` }}>
@@ -35,10 +51,15 @@ function Product({ product, cartItems, toggleFavorite, addToCart, deleteFromCart
           onClick={() => toggleFavorite(product.id)}
           role="presentation"
         />
-        <i className={icon} onClick={event} role="presentation" />
+        {user && <i className={icon} onClick={event} role="presentation" />}
       </div>
       <h3 className="name">{product.name}</h3>
-      <h5 className="price">NT ${product.price}</h5>
+      {getPriceText()}
+      {/* <h5 className="price">NT ${product.price}</h5>
+      <h5 className="price" style={{ textDecoration: 'line-through' }}>
+        NT ${product.price}
+      </h5>
+      <h5 className="price">會員價: NT${product.price * 0.8}</h5> */}
     </div>
   );
 }

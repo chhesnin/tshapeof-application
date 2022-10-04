@@ -36,11 +36,14 @@
     top: 0;
     width: 100%;
     min-height: 100%;
-    background: linear-gradient(0deg, rgba(#222, 0.9) 0%, rgba(#222, 1) 100%);
-    opacity: 0;
+    background: linear-gradient(0deg, rgba(#222, 0.8) 0%, rgba(#222, 0.95) 100%);
     color: var(--132-white);
+    opacity: 0;
     pointer-events: none;
-    transition: 0.3s;
+    &.opened {
+      opacity: 1;
+      pointer-events: auto;
+    }
     .container {
       width: 70%;
       height: 100vh;
@@ -63,10 +66,6 @@
         font-weight: 500;
         letter-spacing: 1.5px;
       }
-    }
-    &.opened {
-      opacity: 1;
-      pointer-events: auto;
     }
   }
 }

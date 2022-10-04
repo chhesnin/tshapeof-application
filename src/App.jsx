@@ -1,11 +1,11 @@
 import './App.scss';
-// import { useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Home from './pages/Home';
 import Pottery from './pages/Pottery';
 import Products from './pages/Products';
 import Contact from './pages/Contact';
+import Sign from './pages/Sign';
 
 function App() {
   return (
@@ -14,8 +14,9 @@ function App() {
         <Route exact path="/" element={<Home />} />
         <Route path="/pottery" element={<Pottery />} />
         <Route path="/products" element={<Products />} />
-        <Route path="/Contact" element={<Contact />} />
+        <Route path="/contact" element={<Contact />} />
       </Routes>
+      <Sign />
       <Navbar />
     </div>
   );

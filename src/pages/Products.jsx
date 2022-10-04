@@ -1,16 +1,17 @@
 import '../style/Products.scss';
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import useHover from '../hooks/useHover';
 import Product from '../components/Product';
 import CartItem from '../components/CartItem';
+import Context from '../Context';
 
 function Products() {
+  const { MEMBER_DISCOUNT, user } = useContext(Context);
   const [allProducts, setAllProducts] = useState([]);
   const [cartItems, setCartItems] = useState([]);
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [total, setTotal] = useState(0);
   const { isHover, ref } = useHover();
-  const cartPageRef = useRef();
   function handleToggleCart() {
     setIsCartOpen((prevIsCartOpen) => !prevIsCartOpen);
   }
@@ -38,7 +39,9 @@ function Products() {
     return 'ri-shopping-cart-line ri-fw ri-2x cart';
   }
   function calculateTotal() {
-    let totalPrice = cartItems.map((item) => item.price).reduce((acc, cur) => acc + cur, 0);
+    let totalPrice = cartItems
+      .map((item) => item.price * MEMBER_DISCOUNT)
+      .reduce((acc, cur) => acc + cur, 0);
     totalPrice = totalPrice.toLocaleString('zh-TW', { style: 'currency', currency: 'TWD' });
     setTotal(totalPrice);
   }
@@ -69,23 +72,24 @@ function Products() {
   }, [isCartOpen]);
   return (
     <main className="products">
-      <i
-        className={getCartIcon()}
-        ref={ref}
-        style={{ color: isCartOpen || isHover ? '#C64A1D' : '#425D66' }}
-        onClick={handleToggleCart}
-        role="presentation"
-      />
+      {user && (
+        <i
+          className={getCartIcon()}
+          ref={ref}
+          style={{ color: isCartOpen || isHover ? '#C64A1D' : '#425D66' }}
+          onClick={handleToggleCart}
+          role="presentation"
+        />
+      )}
       <div className="container">
         <h1 className="title">
           選購陶器
-          <span>| Products</span>
+          <span className="subtitle">| Products</span>
         </h1>
         <div className="products-container">{productElements}</div>
       </div>
       <div
         className={isCartOpen ? 'cart-page opened' : 'cart-page'}
-        ref={cartPageRef}
         onClick={handleToggleCart}
         role="presentation">
         <div className="container">
