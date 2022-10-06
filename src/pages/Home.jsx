@@ -15,16 +15,17 @@ function Home() {
   }
   const pointElements = [0, 1, 2].map((number) => (
     <div
+      key={number}
       className={getPointClassName(number)}
       onClick={() => hangleClickToggleImg(number)}
       role="presentation"
     />
   ));
   useEffect(() => {
-    const timeout = setTimeout(() => {
-      setCurrentImgNum((prevCurrentImgNum) => (prevCurrentImgNum + 1) % 3);
-    }, 10000);
-    setTimer(timeout);
+    // const timeout = setTimeout(() => {
+    //   setCurrentImgNum((prevCurrentImgNum) => (prevCurrentImgNum + 1) % 3);
+    // }, 10000);
+    // setTimer(timeout);
   }, [currentImgNum]);
   return (
     <main className="home">

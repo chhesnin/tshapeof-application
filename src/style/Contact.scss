@@ -2,7 +2,7 @@
   left: 296px;
   width: calc(100% - 296px);
   height: 100vh;
-  background-image: url(../assets/contact-bgi-light-green.png);
+  background-image: url(../assets/contact-bgi-green.png);
   overflow: hidden;
   .container {
     width: 45%;
@@ -14,5 +14,13 @@
         width: 100%
       }
     }
+  }
+  #mycanvas {
+    border: 1px solid #000;
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: 100vh;
+    width: 200px;
   }
 }

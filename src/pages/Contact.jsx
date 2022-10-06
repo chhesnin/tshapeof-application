@@ -3,14 +3,14 @@ import { useState, useEffect } from 'react';
 import useControlledComponent from '../hooks/useControlledComponent';
 
 // *line 13 use htmlFor=""+id="" && put input under label
-// *line 22 https://ithelp.ithome.com.tw/articles/10267360
+// *CORS https://ithelp.ithome.com.tw/articles/10267360
 function Contact() {
   const initialForm = {
     name: '',
     email: '',
     message: ''
   };
-  const { form, setForm, handleChange, ref } = useControlledComponent(initialForm);
+  const { form, ref, setForm, handleChange } = useControlledComponent(initialForm);
   const [isDisable, setIsDisable] = useState(true);
   const [isSubmit, setIsSubmit] = useState(false);
   function handleSubmit(event) {
@@ -78,6 +78,7 @@ function Contact() {
         </form>
         {isSubmit && <h6 className="alert">表單已提交！</h6>}
       </div>
+      <canvas id="mycanvas" />
     </main>
   );
 }

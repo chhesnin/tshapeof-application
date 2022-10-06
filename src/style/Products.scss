@@ -2,14 +2,14 @@
   left: 296px;
   width: calc(100% - 296px);
   min-height: 100vh;
-  background-image: url(../assets/contact-bgi-light-green.png);
+  background-image: url(../assets/contact-bgi-green.png);
   // background-color: var(--132-white);
   
   .cart {
     position: fixed;
     top: 20px;
     right: 20px;
-    color: var(--222-green);
+    color: var(--222-blue);
     z-index: 1;
     &:hover {
       color: var(--518-red);
