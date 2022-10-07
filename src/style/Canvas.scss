@@ -1,0 +1,23 @@
+.canvas-container {
+  @media screen and (max-width:880px) {
+    display: none;
+  }
+  #mycanvas {
+    position: fixed;
+    right: 0;
+    top: 0;
+    background-color: var(--132-white);
+  }
+  h6.alert {
+    position: absolute;
+    right: 5px;
+    bottom: 0;
+    width: 15px;
+    line-height: 15px;
+    opacity: 0;
+    transition: 0.3s;
+    &.show {
+      opacity: 1;
+    }
+  }
+}

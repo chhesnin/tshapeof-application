@@ -1,6 +1,7 @@
 import '../style/Contact.scss';
 import { useState, useEffect } from 'react';
 import useControlledComponent from '../hooks/useControlledComponent';
+import Canvas from '../components/canvas/Canvas';
 
 // *line 13 use htmlFor=""+id="" && put input under label
 // *CORS https://ithelp.ithome.com.tw/articles/10267360
@@ -78,7 +79,7 @@ function Contact() {
         </form>
         {isSubmit && <h6 className="alert">表單已提交！</h6>}
       </div>
-      <canvas id="mycanvas" />
+      <Canvas />
     </main>
   );
 }
