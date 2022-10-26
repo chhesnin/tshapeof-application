@@ -5,15 +5,20 @@ import { gsap } from 'gsap';
 function Pottery() {
   const initialSelections = {
     shape: 'plate',
-    color: '132白'
+    color: 'white'
   };
   const [selections, setSelections] = useState(initialSelections);
+  // const [imgData, setImgData] = useState([]);
   const [isStart, setIsStart] = useState(false);
   const [isFinish, setIsFinish] = useState(false);
+  const [isShowFinalImg, setIsShowFinalImg] = useState(false);
   const [temp, setTemp] = useState(0);
+  const [runTime, setRunTime] = useState(1e-30);
   const redMaskRef = useRef(null);
   const shapeImgRef = useRef(null);
+  const colorImgRef = useRef(null);
   const tempTextRef = useRef(null);
+  const finalImgRef = useRef(null);
   function handleChange(event) {
     const { name, value } = event.target;
     setSelections((prevSelections) => ({
@@ -25,22 +30,50 @@ function Pottery() {
     setIsFinish(false);
     setIsStart(true);
   }
+  // *將檔案上傳Github, 運用fetch串接
+  // useEffect(() => {
+  //   fetch(
+  //     'https://raw.githubusercontent.com/chhesnin/tshapeof-application-pottery/main/pottery.json'
+  //   )
+  //     .then((res) => res.json())
+  //     .then((data) => {
+  //       setImgData(data);
+  //       const initialColorImgUrl = data.find(
+  //         (img) => img.shape === selections.shape && img.color === selections.color
+  //       ).colorUrl;
+  //       const colorImgDom = colorImgRef.current;
+  //       colorImgDom.style.backgroundImage = `url(${initialColorImgUrl})`;
+  //     });
+  // }, []);
+  // *監看 shape
   // *可以監看精準的變數
   useEffect(() => {
     const shapeImgDom = shapeImgRef.current;
     shapeImgDom.className = `shape-img-container ${selections.shape}`;
   }, [selections.shape]);
+  // *監看 color
+  useEffect(() => {
+    const colorImgDom = colorImgRef.current;
+    // *透過 JS 更新 DOM 的 className
+    colorImgDom.className = `color-img-container ${selections.shape} ${selections.color}`;
+  }, [selections.shape, selections.color]);
   useEffect(() => {
     if (isStart && temp < 1200) {
+      // *控制溫度上升
       setTimeout(() => {
         setTemp((prevTemp) => prevTemp + 1);
+      }, runTime);
+      // *控制溫度上升速度漸慢
+      setTimeout(() => {
+        setRunTime((prevRunTime) => prevRunTime * 1.0645);
       }, 1);
     } else if (temp === 1200) {
+      setIsShowFinalImg(true);
       setTimeout(() => {
         setIsStart(false);
         setIsFinish(true);
         setTemp(0);
-      }, 1000);
+      }, 1200);
     }
   }, [isStart, temp]);
   useEffect(() => {
@@ -48,15 +81,15 @@ function Pottery() {
       const redMaskDom = redMaskRef.current;
       const tempTextDom = tempTextRef.current;
       gsap.to(redMaskDom, {
-        duration: 6.5,
+        duration: 8,
         backgroundColor: '#C64A1D',
-        ease: 'none'
+        ease: 'power2.out'
       });
       if (tempTextDom) {
         gsap.to(tempTextDom, {
-          duration: 6.5,
+          duration: 8,
           color: '#E9EAE3',
-          ease: 'none'
+          ease: 'power2.out'
         });
       }
     }
@@ -65,12 +98,20 @@ function Pottery() {
     if (isFinish) {
       const redMaskDom = redMaskRef.current;
       gsap.to(redMaskDom, {
-        duration: 10,
+        duration: 4,
         backgroundColor: 'transparent',
         ease: 'power2.out'
       });
     }
   }, [isFinish]);
+  useEffect(() => {
+    const finalImgDom = finalImgRef.current;
+    if (isShowFinalImg) {
+      finalImgDom.className = isShowFinalImg
+        ? `final ${selections.shape} ${selections.color}`
+        : `final`;
+    }
+  }, [isShowFinalImg]);
   return (
     <main className="pottery">
       <section className="intro">
@@ -144,7 +185,11 @@ function Pottery() {
             釉料的開發與與調配，是陶藝家一生追求不完的課題。不同的釉色會有不同的效果和變化，不管是色澤、飽和感、潤澤及觸感等。讓釉料附著在胚體上叫做上釉。
           </p>
           <div className="grid">
-            <div className="color-img-container" />
+            <div
+              ref={colorImgRef}
+              className="color-img-container"
+              // style={{ backgroundImage: `url(${colorImgUrl})` }}
+            />
             <div className="options">
               <label htmlFor="white">
                 <input
@@ -186,7 +231,7 @@ function Pottery() {
           </div>
         </div>
       </section>
-      <section className={isFinish ? 'final withProduct' : 'final'}>
+      <section ref={finalImgRef} className="final">
         {!isFinish && (
           <div className="container">
             <h3 className="head">5. 釉燒</h3>

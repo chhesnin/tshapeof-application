@@ -30,9 +30,9 @@ function Home() {
   return (
     <main className="home">
       <div className="banner" style={{ left: `${currentImgNum * -100}%` }}>
-        <div className="img-container img132" />
-        <div className="img-container img222" />
-        <div className="img-container img518" />
+        <div className="img-container white-img" />
+        <div className="img-container blue-img" />
+        <div className="img-container red-img" />
       </div>
       <h4 className="slogan">
         <span>實用</span>

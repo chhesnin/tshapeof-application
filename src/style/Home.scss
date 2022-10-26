@@ -16,43 +16,47 @@
       width: 100%;
       background-size: cover;
       flex-shrink: 0;
-      &.img132 {
-        background-image: url(../assets/home-img132.jpg);
+      &.white-img {
+        background-image: url(../assets/home/home-white-img.jpg);
       }
-      &.img222 {
-        background-image: url(../assets/home-img518G.jpg);
+      &.blue-img {
+        background-image: url(../assets/home/home-blue-img.jpg);
       }
-      &.img518 {
-        background-image: url(../assets/home-img518.jpg);
+      &.red-img {
+        background-image: url(../assets/home/home-red-img.jpg);
       }
+    }
+  }
+  .slogan {
+    margin-top: 20px;
+    color: var(--132-white);
+    opacity: 0.6;
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    right: 0;
+    font-size: 12px;
+    line-height: 66px;
+    font-weight: 100;
+    span {
+      margin: 36px;
+      width: 20px;
     }
   }
   // .slogan {
-  //   margin-top: 160px;
+  //   position: absolute;
+  //   top: 88px;
+  //   right: 50px;
   //   color: var(--132-white);
-  //   display: flex;
-  //   flex-direction: column;
-  //   line-height: 26px;
+  //   opacity: 0.7;
   //   font-weight: 100;
+  //   font-size: 12px;
   //   span {
-  //     margin: 16px;
+  //     margin: 10px;
   //     width: 20px;
+  //     letter-spacing: 20px;
   //   }
   // }
-  .slogan {
-    position: absolute;
-    top: 88px;
-    right: 50px;
-    color: var(--132-white);
-    opacity: 0.7;
-    font-weight: 100;
-    font-size: 12px;
-    span {
-      margin: 10px;
-      width: 20px;
-      letter-spacing: 20px;
-    }
-  }
   .points {
     // *df,jcc亦會影響poa的element
     position: absolute;

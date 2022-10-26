@@ -33,7 +33,7 @@
       width: 100%;
       height: 250px;
       margin-top: 120px;
-      background-image: url(../assets/pottery-img.jpg);
+      background-image: url(../assets/pottery/pottery-img.jpg);
       background-size: cover;
       background-position: center center;
     }
@@ -43,16 +43,14 @@
     .grid {
       display: grid;
       grid-template-columns: 1fr 3fr;
-      // grid-gap: 10px;
       height: 300px;
       margin-top: 55px;
-      // border: 1px solid #000;
-      @media screen and (max-width:1024px) {
+      @media screen and (max-width:1150px) {
+        height: 400px;
         grid-template-columns: 1fr;
         grid-template-rows: 1fr 4fr;
       } 
       .options {
-        // border: 1px solid #000;
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -79,28 +77,27 @@
         }
       }
       .shape-img-container {
-        // border: 1px solid #000;
-        background-image: url(../assets/pottery-shape-plate-300300t.png);
         background-size: cover;
         background-position: center center;
         &.plate {
-          background-image: url(../assets/pottery-shape-plate-300300t.png);
+          background-image: url(../assets/pottery/pottery-shape-plate-600600t.png);
         }
         &.bowl {
-          background-image: url(../assets/pottery-shape-bowl-300300t.png);
+          background-image: url(../assets/pottery/pottery-shape-bowl-600600t.png);
         }
         &.cup {
-          background-image: url(../assets/pottery-shape-cup-300300t.png);
+          background-image: url(../assets/pottery/pottery-shape-cup-600600t.png);
         }
       }
     }
   }
   .color {
-    background-color: var(--132-white);
+    // background-color: var(--132-white);
+    background-image: url(../assets/bgi-green-grid.png);
     .grid {
-      border: 1px solid #000;
       grid-template-columns: 3fr 1fr;
-      @media screen and (max-width:1024px) {
+      @media screen and (max-width:1150px) {
+        height: 450px;
         grid-template-columns: 1fr;
         grid-template-rows: 4fr 1fr;
       }
@@ -108,6 +105,7 @@
         label {
           input {
             background-color: #fff;
+            align-items: start;
             &.white {
               &:checked {
                 background-color: var(--132-white);
@@ -127,16 +125,80 @@
         }
       }
       .color-img-container {
-        border: 1px solid #000;
+        background-size: cover;
+        background-position: center center;
+        &.plate {
+          &.white {
+            background-image: url(../assets/pottery/pottery-color-plate-white-600600t.png);
+          }
+          &.red {
+            background-image: url(../assets/pottery/pottery-color-plate-red-600600t.png);
+          }
+          &.green {
+            background-image: url(../assets/pottery/pottery-color-plate-green-600600t.png);
+          }
+        }
+        &.bowl {
+          &.white {
+            background-image: url(../assets/pottery/pottery-color-bowl-white-600600t.png);
+          }
+          &.red {
+            background-image: url(../assets/pottery/pottery-color-bowl-red-600600t.png);
+          }
+          &.green {
+            background-image: url(../assets/pottery/pottery-color-bowl-green-600600t.png);
+          }
+        }
+        &.cup {
+          &.white {
+            background-image: url(../assets/pottery/pottery-color-cup-white-600600t.png);
+          }
+          &.red {
+            background-image: url(../assets/pottery/pottery-color-cup-red-600600t.png);
+          }
+          &.green {
+            background-image: url(../assets/pottery/pottery-color-cup-green-600600t.png);
+          }
+        }
       }
     }
   }
   .final {
-    height: 500px;
-    &.withProduct {
-      background-image: url(../assets/home-img222.jpg);
-      background-size: cover;
-      background-position: center center;
+    height: 700px;
+    background-size: cover;
+    background-position: center center;
+    &.plate {
+      &.white {
+        background-image: url(../assets/pottery/pottery-final-plate-white-19201280.jpg);
+      }
+      &.red {
+        background-image: url(../assets/pottery/pottery-final-plate-red-19201280.jpg);
+      }
+      &.green {
+        background-image: url(../assets/pottery/pottery-final-plate-green-19201280.jpg);
+      }
+    }
+    &.bowl {
+      &.white {
+        background-image: url(../assets/pottery/pottery-final-bowl-white-19201280.jpg);
+      }
+      &.red {
+        background-image: url(../assets/pottery/pottery-final-bowl-red-19201280.jpg);
+      }
+      &.green {
+        background-image: url(../assets/pottery/pottery-final-bowl-green-19201280.jpg);
+      }
+    }
+    &.cup {
+      &.white {
+        background-image: url(../assets/pottery/pottery-final-cup-white-19201280.jpg);
+      }
+      &.red {
+        background-image: url(../assets/pottery/pottery-final-cup-red-19201280.jpg);
+      }
+      &.green {
+        background-image: url(../assets/pottery/pottery-final-cup-green-19201280.jpg);
+      }
     }
     .container {
       display: flex;
@@ -148,7 +210,7 @@
         border-radius: 50px;
         background-color: var(--222-blue);
         color: var(--132-white);
-        margin-top: 100px;
+        margin-top: 170px;
         align-self: center;
         &:hover {
           background-color: var(--518-red);
@@ -156,7 +218,7 @@
       }
       .temp {
         align-self: center;
-        margin-top: 80px;
+        margin-top: 70px;
         font-size: 60px;
         font-weight: 900;
         letter-spacing: 5px;
