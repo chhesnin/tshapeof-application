@@ -55,11 +55,6 @@ function Product({ product, cartItems, toggleFavorite, addToCart, deleteFromCart
       </div>
       <h3 className="name">{product.name}</h3>
       {getPriceText()}
-      {/* <h5 className="price">NT ${product.price}</h5>
-      <h5 className="price" style={{ textDecoration: 'line-through' }}>
-        NT ${product.price}
-      </h5>
-      <h5 className="price">會員價: NT${product.price * 0.8}</h5> */}
     </div>
   );
 }

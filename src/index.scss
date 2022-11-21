@@ -60,7 +60,6 @@ form {
     &:focus {
       outline: none;
       border: 2px solid var(--518-red);
-      border-radius: 6px;
     }
     &::placeholder {
       color: var(--222-blue);

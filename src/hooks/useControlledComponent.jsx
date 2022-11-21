@@ -10,7 +10,6 @@ function useControlledComponent(initialForm) {
       [name]: value
     }));
   }
-  // *? Cannot read properties of null (reading 'focus')
   useEffect(() => {
     if (ref) {
       ref.current.focus();

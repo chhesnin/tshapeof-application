@@ -4,7 +4,7 @@ function Line(ctx, y, mousePos, isMouseDown, recordMouseX, handleRecordMouseX) {
   for (let deltaY = 0; deltaY < 45; deltaY += 1) {
     // *將角度換算成弧度
     const radians = deltaY * 2 * (Math.PI / 180);
-    // *計算應有的長度
+    // *計算應有的長度(成反比)
     const length = Math.cos(Math.PI * 2 - radians);
     if (isMouseDown) {
       if (mousePos.y === y + deltaY || mousePos.y === y - deltaY) {

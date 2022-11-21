@@ -22,18 +22,31 @@ function Home() {
     />
   ));
   useEffect(() => {
-    // const timeout = setTimeout(() => {
-    //   setCurrentImgNum((prevCurrentImgNum) => (prevCurrentImgNum + 1) % 3);
-    // }, 10000);
-    // setTimer(timeout);
+    const timeout = setTimeout(() => {
+      setCurrentImgNum((prevCurrentImgNum) => (prevCurrentImgNum + 1) % 3);
+    }, 10000);
+    setTimer(timeout);
   }, [currentImgNum]);
   return (
     <main className="home">
       <div className="banner" style={{ left: `${currentImgNum * -100}%` }}>
-        <div className="img-container white-img" />
         <div className="img-container blue-img" />
+        <div className="img-container white-img" />
         <div className="img-container red-img" />
       </div>
+      {/* <h4 className="slogan">
+        <span>|</span>
+        <span> </span>
+        <span>實</span>
+        <span>用</span>
+        <span> </span>
+        <span>簡</span>
+        <span>單</span>
+        <span> </span>
+        <span>有</span>
+        <span>機</span>
+        <span> </span>
+      </h4> */}
       <h4 className="slogan">
         <span>實用</span>
         <span>簡單</span>
