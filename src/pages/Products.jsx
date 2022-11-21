@@ -62,8 +62,13 @@ function Products() {
     <CartItem key={item.id} item={item} deleteFromCart={deleteFromCart} />
   ));
   useEffect(() => {
+<<<<<<< HEAD
     // *配合 localStorge 之條件
     if (!allProducts.length) {
+=======
+    // *配合localStorge之條件
+    if (allProducts === []) {
+>>>>>>> d8bf794294cee6cf8f37f98119627483de3b655c
       const apiURL =
         'https://raw.githubusercontent.com/chhesnin/tshapeof-application-products/main/products.json';
       fetch(apiURL)
