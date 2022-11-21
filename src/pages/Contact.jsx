@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import useControlledComponent from '../hooks/useControlledComponent';
 import Canvas from '../components/canvas/Canvas';
 
-// *line 13 use htmlFor=""+id="" && put input under label
+// *line 41 use htmlFor=""+id="" && put input under label
 // *CORS https://ithelp.ithome.com.tw/articles/10267360
 function Contact() {
   const initialForm = {
@@ -17,6 +17,7 @@ function Contact() {
   function handleSubmit(event) {
     event.preventDefault();
     setIsSubmit(true);
+    console.log(form);
     setTimeout(() => {
       setIsSubmit(false);
     }, 2000);
@@ -50,7 +51,7 @@ function Contact() {
               placeholder="enter your name"
             />
           </label>
-          <label htmlFor="email-contact">
+          <label htmlFor="email">
             信箱:
             <input
               id="email-contact"

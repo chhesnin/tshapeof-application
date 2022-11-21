@@ -63,6 +63,7 @@
           align-items: center;
           input {
             margin-right: 10px;
+            // *
             appearance: none;
             width: 10px;
             height: 10px;
@@ -105,7 +106,6 @@
         label {
           input {
             background-color: #fff;
-            align-items: start;
             &.white {
               &:checked {
                 background-color: var(--132-white);
@@ -232,7 +232,6 @@
       top: 0;
       pointer-events: none;
       background-color: transparent;
-      // border: 1px solid #000;
     }
   }
 }
