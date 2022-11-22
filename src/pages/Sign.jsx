@@ -6,8 +6,8 @@ import useControlledComponent from '../hooks/useControlledComponent';
 function Sign() {
   const { isSignOpen, isLoading, alert, toggleSignOpen, signUp, signIn } = useContext(Context);
   const initialForm = {
-    email: '',
-    password: ''
+    email: 'user1@gmail.com',
+    password: '123456'
   };
   const { form, ref, setForm, handleChange } = useControlledComponent(initialForm);
   function handleClickPropagation(event) {
