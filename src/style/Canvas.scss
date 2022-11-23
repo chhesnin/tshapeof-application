@@ -7,6 +7,10 @@
     right: 0;
     top: 0;
     background-color: var(--132-white);
+    &.borderLeft {
+      border-left: 1px dashed var(--222-blue);
+      transition: 0.3s;
+    }
   }
   h6.alert {
     position: absolute;

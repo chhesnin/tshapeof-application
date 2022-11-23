@@ -72,9 +72,10 @@ function Canvas() {
         onMouseUp={handleMouseUp}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
+        className={isMouseEnter && 'borderLeft'}
       />
       <h6 className={isMouseEnter ? 'alert show' : 'alert'}>
-        按著滑鼠能將陶土塑型喔
+        在<span style={{ color: '#C64A1D' }}>虛線與陶土之間按著滑鼠</span>能將陶土塑型喔
         <br />!
       </h6>
     </div>
