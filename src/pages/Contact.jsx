@@ -1,11 +1,13 @@
 import '../style/Contact.scss';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import useControlledComponent from '../hooks/useControlledComponent';
 import Canvas from '../components/canvas/Canvas';
+import Context from '../Context';
 
 // *line 41 use htmlFor=""+id="" && put input under label
 // *CORS https://ithelp.ithome.com.tw/articles/10267360
 function Contact() {
+  const { user } = useContext(Context);
   const initialForm = {
     name: '',
     email: '',
@@ -31,6 +33,19 @@ function Contact() {
       setIsDisable(true);
     }
   }, [form]);
+  useEffect(() => {
+    if (user) {
+      setForm((prevForm) => ({
+        ...prevForm,
+        email: user.email
+      }));
+    } else {
+      setForm((prevForm) => ({
+        ...prevForm,
+        email: ''
+      }));
+    }
+  }, [user]);
   return (
     <main className="contact">
       <div className="container">
@@ -51,7 +66,7 @@ function Contact() {
               placeholder="enter your name"
             />
           </label>
-          <label htmlFor="email">
+          <label htmlFor="email-contact">
             信箱:
             <input
               id="email-contact"
@@ -74,7 +89,7 @@ function Contact() {
               placeholder="messages..."
             />
           </label>
-          <button type="submit" disabled={isDisable}>
+          <button className="form-button contact-button" type="submit" disabled={isDisable}>
             提交
           </button>
         </form>

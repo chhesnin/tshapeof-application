@@ -4,18 +4,18 @@ import useHover from '../hooks/useHover';
 import Context from '../Context';
 
 function Product({ product, cartItems, toggleFavorite, addToCart, deleteFromCart }) {
-  const { MEMBER_DISCOUNT, user } = useContext(Context);
-  const { isHover, ref } = useHover();
+  const { MEMBER_DISCOUNT, user, toggleSignOpen } = useContext(Context);
+  const [isProductImgHover, productImgRef] = useHover();
   function getHeartIcon() {
     let value;
     if (product.isFavorite) {
       value = 'ri-heart-fill favorite';
-    } else if (isHover) {
+    } else if (isProductImgHover) {
       value = 'ri-heart-line favorite';
     }
     return value;
   }
-  // *同時處理兩個icon的樣式及方法
+  // *同時處理兩個 icon 的樣式及方法
   function handleAddIcon() {
     let icon;
     let event;
@@ -23,7 +23,7 @@ function Product({ product, cartItems, toggleFavorite, addToCart, deleteFromCart
     if (cartHaveThisItem) {
       icon = 'ri-shopping-cart-fill add';
       event = () => deleteFromCart(cartHaveThisItem.id);
-    } else if (isHover) {
+    } else if (isProductImgHover) {
       icon = 'ri-add-circle-line add';
       event = () => addToCart(product);
     }
@@ -45,7 +45,10 @@ function Product({ product, cartItems, toggleFavorite, addToCart, deleteFromCart
   }
   return (
     <div className="product">
-      <div ref={ref} className="img-container" style={{ backgroundImage: `url(${product.url})` }}>
+      <div
+        ref={productImgRef}
+        className="img-container"
+        style={{ backgroundImage: `url(${product.url})` }}>
         <i
           className={getHeartIcon()}
           onClick={() => toggleFavorite(product.id)}
@@ -55,6 +58,11 @@ function Product({ product, cartItems, toggleFavorite, addToCart, deleteFromCart
       </div>
       <h3 className="name">{product.name}</h3>
       {getPriceText()}
+      {!user && (
+        <button className="form-button" type="button" onClick={toggleSignOpen}>
+          登入選購
+        </button>
+      )}
     </div>
   );
 }

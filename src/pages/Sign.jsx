@@ -44,7 +44,7 @@ function Sign() {
             onChange={handleChange}
             value={form.email}
             onClick={handleClickPropagation}
-            placeholder="name or email"
+            placeholder="email"
           />
         </label>
         <label htmlFor="password">
@@ -60,10 +60,18 @@ function Sign() {
           />
         </label>
         <div className="buttons">
-          <button type="button" onClick={handleSignIn} disabled={isLoading}>
+          <button
+            className="form-button sign-button"
+            type="button"
+            onClick={handleSignIn}
+            disabled={isLoading}>
             登入
           </button>
-          <button type="button" onClick={handleSignUp} disabled={isLoading}>
+          <button
+            className="form-button sign-button"
+            type="button"
+            onClick={handleSignUp}
+            disabled={isLoading}>
             註冊
           </button>
         </div>

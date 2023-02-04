@@ -20,7 +20,7 @@ function useHover() {
       };
     }
   }, []);
-  return { isHover, ref };
+  return [isHover, ref];
 }
 
 export default useHover;

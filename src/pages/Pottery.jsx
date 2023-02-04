@@ -1,6 +1,9 @@
 import '../style/Pottery.scss';
 import { useState, useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowDown } from '@fortawesome/free-solid-svg-icons';
+import useHover from '../hooks/useHover';
 
 function Pottery() {
   const initialSelections = {
@@ -19,6 +22,8 @@ function Pottery() {
   const colorImgRef = useRef(null);
   const tempTextRef = useRef(null);
   const finalImgRef = useRef(null);
+  const [isShapeBlockHover, shapeBlockRef] = useHover();
+  const [isColorBlockHover, colorBlockRef] = useHover();
   function handleChange(event) {
     const { name, value } = event.target;
     setSelections((prevSelections) => ({
@@ -29,6 +34,15 @@ function Pottery() {
   function handleStart() {
     setIsFinish(false);
     setIsStart(true);
+  }
+  function handleRestart() {
+    const finalImgDom = finalImgRef.current;
+    finalImgDom.className = 'final';
+    setIsStart(false);
+    setIsFinish(false);
+    setIsShowFinalImg(false);
+    setTemp(0);
+    setRunTime(1e-30);
   }
   // *將檔案上傳Github, 運用fetch串接
   // useEffect(() => {
@@ -70,8 +84,8 @@ function Pottery() {
     } else if (temp === 1200) {
       setIsShowFinalImg(true);
       setTimeout(() => {
-        setIsStart(false);
         setIsFinish(true);
+        setIsStart(false);
         setTemp(0);
       }, 1200);
     }
@@ -107,9 +121,7 @@ function Pottery() {
   useEffect(() => {
     const finalImgDom = finalImgRef.current;
     if (isShowFinalImg) {
-      finalImgDom.className = isShowFinalImg
-        ? `final ${selections.shape} ${selections.color}`
-        : `final`;
+      finalImgDom.className = `final ${selections.shape} ${selections.color}`;
     }
   }, [isShowFinalImg]);
   return (
@@ -120,7 +132,7 @@ function Pottery() {
             認識陶器
             <span className="subtitle">| Pottery</span>
           </h1>
-          <p>世世上有各式各樣的材質，但只有土是唯一可以用手塑造成形。</p>
+          <p>世界上有各式各樣的材質，但唯有土，可以用手塑造成形。</p>
           <p>創作者就隱藏在器皿表面的顏色和形狀之下。</p>
         </div>
         <div className="img-container" />
@@ -128,14 +140,17 @@ function Pottery() {
       <section className="shape">
         <div className="container">
           <h3 className="head">1. 練土</h3>
-          <p>練土是陶藝很重要的一個動作，主要是要讓空氣排出，讓陶土的質地更均勻、乾濕軟硬適中。</p>
-          <p>謝工作室以菊練為主。</p>
+          <p>練土是陶藝很重要的一個動作，主要是讓空氣排出，讓陶土的質地更均勻、乾濕軟硬適中。</p>
           <h3 className="head">2. 塑形</h3>
           <p>
-            捏陶與拉胚最常見，將陶土塑出一個形狀，它可以是盤子、碗、杯子等。此時的胚體特別脆弱，最容易受到損壞，放置在陰涼透氣處陰乾之後形成素胚，可以做陶刻或是題字等。
+            捏陶與拉胚是將陶土塑出形狀最常見的技法，可以塑出盤子、碗、杯子等。此時的胚體特別脆弱，容易受到損壞，放置在陰涼透氣處陰乾之後形成素胚，可以做陶刻或題字等。
           </p>
-          <div className="grid">
+          <div className="grid" ref={shapeBlockRef}>
             <div className="options">
+              <h6 className={isShapeBlockHover ? 'alert show shape-alert' : 'alert shape-alert'}>
+                請選擇形狀&nbsp;&nbsp;
+                <FontAwesomeIcon icon={faArrowDown} />
+              </h6>
               <label htmlFor="plate">
                 <input
                   id="plate"
@@ -178,19 +193,25 @@ function Pottery() {
         <div className="container">
           <h3 className="head">3. 素燒</h3>
           <p>
-            素燒是讓素胚經過700~1000°C不等的燒窯，讓胚體產生瓷化作用，可以長久保存，經過素燒之後的胚體毛細孔會張大，有利於之後的上釉。
+            素燒是讓素胚經過700~1000°C不等的燒窯，使胚體產生瓷化作用，可以長久保存。經過素燒之後的胚體毛細孔會張大，有利於之後的上釉。
           </p>
           <h3 className="head">4. 上釉</h3>
           <p>
-            釉料的開發與與調配，是陶藝家一生追求不完的課題。不同的釉色會有不同的效果和變化，不管是色澤、飽和感、潤澤及觸感等。讓釉料附著在胚體上叫做上釉。
+            釉藥的開發與調配，是陶藝家一生追求不完的課題。不同的釉色會有不同的效果和變化，表現在色調、飽和感、潤澤及觸感上。讓釉藥附著在胚體上叫做上釉。
+            <br />
+            <p style={{ color: '#425D66' }}>*222綠的釉藥為粉紅色，釉燒後呈現綠色。</p>
           </p>
-          <div className="grid">
+          <div className="grid" ref={colorBlockRef}>
             <div
               ref={colorImgRef}
               className="color-img-container"
               // style={{ backgroundImage: `url(${colorImgUrl})` }}
             />
             <div className="options">
+              <h6 className={isColorBlockHover ? 'alert show color-alert' : 'alert color-alert'}>
+                請選擇顏色&nbsp;&nbsp;
+                <FontAwesomeIcon icon={faArrowDown} />
+              </h6>
               <label htmlFor="white">
                 <input
                   id="white"
@@ -213,7 +234,7 @@ function Pottery() {
                   onChange={handleChange}
                   checked={selections.color === 'red'}
                 />
-                518紅
+                518橘
               </label>
               <label htmlFor="green">
                 <input
@@ -232,7 +253,13 @@ function Pottery() {
         </div>
       </section>
       <section ref={finalImgRef} className="final">
-        {!isFinish && (
+        {isFinish ? (
+          <button className="restart" type="button" onClick={handleRestart}>
+            再燒
+            <br />
+            一次
+          </button>
+        ) : (
           <div className="container">
             <h3 className="head">5. 釉燒</h3>
             <p>
@@ -246,6 +273,8 @@ function Pottery() {
             ) : (
               <button className="start" type="button" onClick={handleStart}>
                 開始
+                <br />
+                釉燒
               </button>
             )}
           </div>

@@ -5,18 +5,20 @@ import Line from './Line';
 function Canvas() {
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
   const [isMouseDown, setIsMouseDown] = useState(false);
-  const [isMouseEnter, setIsMouseEnter] = useState(false);
-  function initalRecordMouseX() {
+  // const [isMouseEnter, setIsMouseEnter] = useState(false);
+  function initalRecordLineX() {
     const obj = {};
     for (let y = 0; y < window.innerHeight; y += 1) {
       Object.assign(obj, { [y]: 50 });
     }
     return obj;
   }
-  const [recordMouseX, setRecordMouseX] = useState(initalRecordMouseX());
-  // *定義 ctx 為 canvas 2d 畫布
+  const [recordLineX, setRecordLineX] = useState(initalRecordLineX());
+  // *紀錄 LineX 是否已經改變
+  const [isLineXChange, setIsLineXChange] = useState(false);
+  // *取得 canvas 並定義 ctx 為 canvas 2d 畫布
   const canvasRef = useRef(null);
-  // *? onMouseMove
+  // *? onMouseMove + onMouseDown 無法使用
   function handleMouseMove(event) {
     setMousePos({ x: event.offsetX, y: event.offsetY });
   }
@@ -26,17 +28,21 @@ function Canvas() {
   function handleMouseUp() {
     setIsMouseDown(false);
   }
-  function handleMouseEnter() {
-    setIsMouseEnter(true);
-  }
-  function handleMouseLeave() {
-    setIsMouseEnter(false);
-  }
-  function handleRecordMouseX(mousePosY, num) {
-    setRecordMouseX((prevRecordMouseX) => ({
-      ...prevRecordMouseX,
-      [mousePosY]: prevRecordMouseX[mousePosY] + num
+  // function handleMouseEnter() {
+  //   setIsMouseEnter(true);
+  // }
+  // function handleMouseLeave() {
+  //   setIsMouseEnter(false);
+  // }
+  function handleRecordLineX(mousePosY, num) {
+    setRecordLineX((prevRecordLineX) => ({
+      ...prevRecordLineX,
+      [mousePosY]: prevRecordLineX[mousePosY] + num
     }));
+  }
+  function handleRestart() {
+    setRecordLineX(initalRecordLineX());
+    setIsLineXChange(false);
   }
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -46,11 +52,11 @@ function Canvas() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       // *初始化
       for (let y = 0; y < canvas.height; y += 1) {
-        Line(ctx, y, mousePos, isMouseDown, recordMouseX, handleRecordMouseX);
+        Line(ctx, y, mousePos, isMouseDown, recordLineX, handleRecordLineX);
       }
-      // *單純加深Line顏色
+      // *單純加深 Line 顏色
       for (let y = 0; y < canvas.height; y += 1) {
-        Line(ctx, y, mousePos, isMouseDown, recordMouseX, handleRecordMouseX);
+        Line(ctx, y, mousePos, isMouseDown, recordLineX, handleRecordLineX);
       }
     }
     render();
@@ -61,6 +67,11 @@ function Canvas() {
       window.removeEventListener('mousemove', handleMouseMove);
     };
   }, []);
+  useEffect(() => {
+    if (isMouseDown) {
+      setIsLineXChange(true);
+    }
+  }, [isMouseDown]);
   return (
     <div className="canvas-container">
       <canvas
@@ -70,14 +81,19 @@ function Canvas() {
         height={window.innerHeight}
         onMouseDown={handleMouseDown}
         onMouseUp={handleMouseUp}
-        onMouseEnter={handleMouseEnter}
-        onMouseLeave={handleMouseLeave}
-        className={isMouseEnter && 'borderLeft'}
+        // onMouseEnter={handleMouseEnter}
+        // onMouseLeave={handleMouseLeave}
+        // className={isMouseEnter && 'borderLeft'}
       />
-      <h6 className={isMouseEnter ? 'alert show' : 'alert'}>
-        在<span style={{ color: '#C64A1D' }}>虛線與陶土之間按著滑鼠</span>能將陶土塑型喔
+      <h6 className="alert show">
+        靠近右側的陶土<span style={{ color: '#C64A1D' }}>長按滑鼠</span>能捏出形狀喔
         <br />!
       </h6>
+      {isLineXChange && (
+        <button className="canvas-restart" type="button" onClick={handleRestart}>
+          再玩一次
+        </button>
+      )}
     </div>
   );
 }

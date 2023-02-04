@@ -3,7 +3,7 @@
   width: calc(100% - 296px);
   min-height: 100vh;
   background-image: url(../assets/bgi-green-grid.png);
-  // background-color: var(--132-white);
+  padding-bottom: 30px;
   
   .cart {
     position: fixed;
@@ -33,7 +33,7 @@
       margin-top: 55px;
       display: grid;
       grid-template-columns: 1fr 1fr;
-      grid-gap: 70px 50px;
+      grid-gap: 80px 55px;
       @media screen and (max-width:1024px) { 
         grid-template-columns: 1fr;
       }

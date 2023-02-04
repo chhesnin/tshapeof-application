@@ -9,9 +9,10 @@ function Home() {
     return currentImgNum === number ? 'point active' : 'point';
   }
   function hangleClickToggleImg(number) {
+    // *先設定數字，再清除 timer
+    setCurrentImgNum(number);
     clearTimeout(timer);
     setTimer(null);
-    setCurrentImgNum(number);
   }
   const pointElements = [0, 1, 2].map((number) => (
     <div

@@ -15,7 +15,7 @@ function Products() {
   );
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [total, setTotal] = useState(0);
-  const { isHover, ref } = useHover();
+  const [isCartIconHover, cartIconRef] = useHover();
   function handleToggleCart() {
     setIsCartOpen((prevIsCartOpen) => !prevIsCartOpen);
   }
@@ -86,8 +86,8 @@ function Products() {
       {user && (
         <i
           className={getCartIcon()}
-          ref={ref}
-          style={{ color: isCartOpen || isHover ? '#C64A1D' : '#425D66' }}
+          ref={cartIconRef}
+          style={{ color: isCartOpen || isCartIconHover ? '#C64A1D' : '#425D66' }}
           onClick={handleToggleCart}
           role="presentation">
           <h6 className="cart-items-num">{cartItems.length}</h6>

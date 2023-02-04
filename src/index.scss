@@ -66,22 +66,36 @@ form {
       opacity: 0.6;
     }
   }
-  button {
-    padding: 6px;
-    font-size: 16px;
-    border-radius: 5px;
-    letter-spacing: 1.5px;
-    margin-top: 20px;
+}
+button.form-button {
+  padding: 6px;
+  font-size: 16px;
+  border-radius: 5px;
+  letter-spacing: 1.5px;
+  margin-top: 20px;
+  transition: 0.1s;
+  cursor: pointer;
+  &.sign-button {
     border: 1.5px solid var(--black);
     background-color: var(--518-red);
     color: var(--132-white);
-    cursor: pointer;
-    &:disabled {
-      pointer-events: none;
-      background-color: var(--132-white);
-      color: #aaa;
-      border: 1px solid #aaa;
+    &:hover {
+      border: 1.5px solid var(--132-white);
     }
+  }
+  &.contact-button {
+    border: 1.5px solid var(--black);
+    color: var(--132-white);
+    background-color: var(--222-blue);
+    &:hover {
+      background-color: var(--518-red);
+    }
+  }
+  &:disabled {
+    pointer-events: none;
+    background-color: var(--132-white);
+    color: #aaa;
+    border: 1px solid #aaa;
   }
 }
 h6.alert {
@@ -90,4 +104,9 @@ h6.alert {
   font-weight: 500;
   letter-spacing: 1px;
   color: var(--222-blue);
+  opacity: 0;
+  transition: 0.3s;
+  &.show {
+    opacity: 1;
+  }
 }

@@ -44,4 +44,17 @@
       text-decoration: line-through;
     }
   }
+  button.form-button {
+    font-size: 14px;
+    width: 100px;
+    border: 1px solid var(--518-red);
+    color: var(--518-red);
+    background-color: transparent;
+    margin-top: 15px;
+    &:hover {
+      background-color: var(--518-red);
+      color: var(--132-white);
+      border: 1px solid var(--black);
+    }
+  }
 }

@@ -55,6 +55,16 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
+        .shape-alert {
+          position: absolute;
+          top: 20px;
+          left: 29px;
+        }
+        .color-alert {
+          position: absolute;
+          top: 58px;
+          left: 29px;
+        }
         label {
           margin-bottom: 12px;
           font-size: 16px;
@@ -96,6 +106,7 @@
     // background-color: var(--132-white);
     background-image: url(../assets/bgi-green-grid.png);
     .grid {
+      height: 400px;
       grid-template-columns: 3fr 1fr;
       @media screen and (max-width:1150px) {
         height: 450px;
@@ -106,21 +117,24 @@
         label {
           input {
             background-color: #fff;
-            &.white {
-              &:checked {
-                background-color: var(--132-white);
-              }
+            &:checked {
+              background-color: var(--518-red);
             }
-            &.red {
-              &:checked {
-                background-color: var(--518-red);
-              }
-            }
-            &.green {
-              &:checked {
-                background-color: var(--518g-green);
-              }
-            }
+            // &.white {
+            //   &:checked {
+            //     background-color: var(--132-white);
+            //   }
+            // }
+            // &.red {
+            //   &:checked {
+            //     background-color: var(--518-red);
+            //   }
+            // }
+            // &.green {
+            //   &:checked {
+            //     background-color: var(--518g-green);
+            //   }
+            // }
           }
         }
       }
@@ -164,7 +178,7 @@
     }
   }
   .final {
-    height: 700px;
+    height: 780px;
     background-size: cover;
     background-position: center center;
     &.plate {
@@ -212,13 +226,15 @@
         color: var(--132-white);
         margin-top: 170px;
         align-self: center;
+        transition: 0.3s;
+        cursor: pointer;
         &:hover {
           background-color: var(--518-red);
         }
       }
       .temp {
         align-self: center;
-        margin-top: 70px;
+        margin-top: 150px;
         font-size: 60px;
         font-weight: 900;
         letter-spacing: 5px;
@@ -232,6 +248,25 @@
       top: 0;
       pointer-events: none;
       background-color: transparent;
+    }
+    button.restart {
+      position: absolute;
+      top: 93%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      border: 1px solid var(--518-red);
+      width: 50px;
+      height: 50px;
+      border-radius: 50px;
+      background-color: rgba(#E9EAE3, 0.5);
+      color: var(--518-red);
+      transition: 0.3s;
+      cursor: pointer;
+      &:hover {
+        border: 1px solid var(--132-white);
+        background-color: var(--518-red);
+        color: var(--132-white);
+      }
     }
   }
 }

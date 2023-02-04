@@ -1,5 +1,5 @@
-function Line(ctx, y, mousePos, isMouseDown, recordMouseX, handleRecordMouseX) {
-  const x = recordMouseX[y];
+function Line(ctx, y, mousePos, isMouseDown, recordLineX, handleRecordLineX) {
+  const x = recordLineX[y];
   // *弧線塑形效果
   for (let deltaY = 0; deltaY < 45; deltaY += 1) {
     // *將角度換算成弧度
@@ -7,13 +7,12 @@ function Line(ctx, y, mousePos, isMouseDown, recordMouseX, handleRecordMouseX) {
     // *計算應有的長度(成反比)
     const length = Math.cos(Math.PI * 2 - radians);
     if (isMouseDown) {
+      // *滑鼠 y 位置上下產生對稱的弧線效果
       if (mousePos.y === y + deltaY || mousePos.y === y - deltaY) {
+        // *限制當滑鼠 x 位置在 line 的左邊時，才能觸發，防止失控
         if (mousePos.x < x) {
-          handleRecordMouseX(y, length);
+          handleRecordLineX(y, length);
         }
-        // else {
-        //   handleRecordMouseX(y, -length);
-        // }
       }
     }
   }
