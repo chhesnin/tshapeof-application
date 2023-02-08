@@ -1,6 +1,6 @@
 .home {
-  left: 296px;
-  width: calc(100% - 296px);
+  left: 276px;
+  width: calc(100% - 276px);
   height: 100vh;
   display: flex;
   justify-content: center;
@@ -33,10 +33,10 @@
     position: absolute;
     bottom: 34px;
     font-size: 12px;
-    font-weight: 600;
+    font-weight: 500;
     line-height: 20px;
     span {
-      margin: 10px 0px;
+      margin: 9px 0px;
       width: 20px;
     }
   }
@@ -63,12 +63,13 @@
     display: flex;
     flex-direction: column;
     .point {
-      width: 10px;
-      height: 10px;
-      border-radius: 10px;
+      width: 9px;
+      height: 9px;
+      border-radius: 9px;
       // margin: 30px 0px;
       background-color: var(--132-white);
       opacity: 0.3;
+      cursor: pointer;
       &.active {
         background-color: var(--518-red);
         opacity: 1;

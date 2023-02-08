@@ -2,15 +2,15 @@
   position: fixed;
   left: 0;
   top: 0;
-  width: 300px;
+  width: 280px;
   height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   background-color: #fff;
   .logo {
-    width: 300px;
-    top: 50px;
+    width: 100%;
+    top: 10%;
   }
   .nav-container {
     display: flex;
@@ -22,7 +22,8 @@
       // *
       text-decoration: none;
       color: var(--black);
-      font-weight: 300;
+      font-size: 14px;
+      font-weight: 400;
       letter-spacing: 1.5px;
       cursor: pointer;
       transition: 0.3s;
@@ -42,8 +43,8 @@
       align-items: center;
       background-color: var(--132-white);
       .brand-icon {
-        font-size: 14px;
-        margin: 20px;
+        font-size: 12px;
+        margin: 18px;
         color: var(--black);
         transition: 0.3s;
         &:hover {

@@ -59,6 +59,10 @@ function Pottery() {
   //       colorImgDom.style.backgroundImage = `url(${initialColorImgUrl})`;
   //     });
   // }, []);
+  // *當 mounted 時，頁面返回頂部
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   // *監看 shape
   // *可以監看精準的變數
   useEffect(() => {
@@ -147,9 +151,11 @@ function Pottery() {
           </p>
           <div className="grid" ref={shapeBlockRef}>
             <div className="options">
-              <h6 className={isShapeBlockHover ? 'alert show shape-alert' : 'alert shape-alert'}>
-                請選擇形狀&nbsp;&nbsp;
-                <FontAwesomeIcon icon={faArrowDown} />
+              <h6
+                className={isShapeBlockHover ? 'alert show options-alert' : 'alert options-alert'}>
+                請選擇形狀
+                <br />
+                <FontAwesomeIcon className="alert-icon" icon={faArrowDown} />
               </h6>
               <label htmlFor="plate">
                 <input
@@ -208,9 +214,11 @@ function Pottery() {
               // style={{ backgroundImage: `url(${colorImgUrl})` }}
             />
             <div className="options">
-              <h6 className={isColorBlockHover ? 'alert show color-alert' : 'alert color-alert'}>
-                請選擇顏色&nbsp;&nbsp;
-                <FontAwesomeIcon icon={faArrowDown} />
+              <h6
+                className={isColorBlockHover ? 'alert show options-alert' : 'alert options-alert'}>
+                請選擇顏色
+                <br />
+                <FontAwesomeIcon className="alert-icon" icon={faArrowDown} />
               </h6>
               <label htmlFor="white">
                 <input
@@ -254,11 +262,14 @@ function Pottery() {
       </section>
       <section ref={finalImgRef} className="final">
         {isFinish ? (
-          <button className="restart" type="button" onClick={handleRestart}>
-            再燒
-            <br />
-            一次
-          </button>
+          <>
+            <button className="restart" type="button" onClick={handleRestart}>
+              再燒
+              <br />
+              一次
+            </button>
+            <h6 className="alert show">*記得重新選擇形狀、顏色喔！</h6>
+          </>
         ) : (
           <div className="container">
             <h3 className="head">5. 釉燒</h3>

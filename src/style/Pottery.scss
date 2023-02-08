@@ -1,6 +1,6 @@
 .pottery {
-  left: 296px;
-  width: calc(100% - 296px);
+  left: 276px;
+  width: calc(100% - 276px);
   .container {
     width: 45%;
     padding: 0px 0px 0px 1px;
@@ -8,10 +8,11 @@
       margin: 0;
     }
     h3.head {
+      font-size: 18px;
       font-weight: 500;
       letter-spacing: 2px;
       color: var(--518-red);
-      margin: 45px 0px 20px 0px;
+      margin: 55px 0px 20px 0px;
     }
     p {
       font-size: 14px;
@@ -21,9 +22,9 @@
   }
   .intro {
     .container {
-      padding: 53px 0px 0px 1px;
+      padding: 80px 0px 0px 1px;
       h1.title {
-        margin-bottom: 100px;
+        margin-bottom: 120px;
       }
       p {
         color: var(--518-red);
@@ -32,38 +33,39 @@
     .img-container {
       width: 100%;
       height: 250px;
-      margin-top: 120px;
+      margin-top: 140px;
       background-image: url(../assets/pottery/pottery-img.jpg);
       background-size: cover;
       background-position: center center;
     }
   }
   .shape, .color, .final {
-    padding: 55px 0px 100px 0px;
+    padding: 55px 0px 80px 0px;
     .grid {
       display: grid;
       grid-template-columns: 1fr 3fr;
       height: 300px;
-      margin-top: 55px;
+      margin-top: 65px;
       @media screen and (max-width:1150px) {
         height: 400px;
         grid-template-columns: 1fr;
         grid-template-rows: 1fr 4fr;
+        .options .options-alert {
+          display: none;
+        }
       } 
       .options {
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        .shape-alert {
+        .options-alert {
           position: absolute;
           top: 20px;
-          left: 29px;
+          left: 25px;
         }
-        .color-alert {
-          position: absolute;
-          top: 58px;
-          left: 29px;
+        .alert-icon {
+          margin-top: 5px;
         }
         label {
           margin-bottom: 12px;
@@ -88,7 +90,9 @@
         }
       }
       .shape-img-container {
-        background-size: cover;
+        // *使背景跟隨容器大小改變
+        background-size: 100% auto;
+        background-repeat: no-repeat;
         background-position: center center;
         &.plate {
           background-image: url(../assets/pottery/pottery-shape-plate-600600t.png);
@@ -106,7 +110,6 @@
     // background-color: var(--132-white);
     background-image: url(../assets/bgi-green-grid.png);
     .grid {
-      height: 400px;
       grid-template-columns: 3fr 1fr;
       @media screen and (max-width:1150px) {
         height: 450px;
@@ -139,7 +142,8 @@
         }
       }
       .color-img-container {
-        background-size: cover;
+        background-size: 100% auto;
+        background-repeat: no-repeat;
         background-position: center center;
         &.plate {
           &.white {
@@ -178,7 +182,7 @@
     }
   }
   .final {
-    height: 780px;
+    height: 700px;
     background-size: cover;
     background-position: center center;
     &.plate {
@@ -224,6 +228,8 @@
         border-radius: 50px;
         background-color: var(--222-blue);
         color: var(--132-white);
+        font-size: 13px;
+        letter-spacing: 0.5px;
         margin-top: 170px;
         align-self: center;
         transition: 0.3s;
@@ -251,7 +257,7 @@
     }
     button.restart {
       position: absolute;
-      top: 93%;
+      top: 92%;
       left: 50%;
       transform: translate(-50%, -50%);
       border: 1px solid var(--518-red);
@@ -260,6 +266,8 @@
       border-radius: 50px;
       background-color: rgba(#E9EAE3, 0.5);
       color: var(--518-red);
+      font-size: 12px;
+      letter-spacing: 0.5px;
       transition: 0.3s;
       cursor: pointer;
       &:hover {
@@ -267,6 +275,16 @@
         background-color: var(--518-red);
         color: var(--132-white);
       }
+    }
+    h6.alert {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      padding: 3px;
+      margin: 0;
+      color: rgba(#E9EAE3, 0.75);
+      font-weight: 100;
+      background-color: rgba(#425D66, 0.3);;
     }
   }
 }

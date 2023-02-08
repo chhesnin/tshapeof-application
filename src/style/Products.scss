@@ -1,6 +1,6 @@
 .products {
-  left: 296px;
-  width: calc(100% - 296px);
+  left: 276px;
+  width: calc(100% - 276px);
   min-height: 100vh;
   background-image: url(../assets/bgi-green-grid.png);
   padding-bottom: 30px;
@@ -18,9 +18,8 @@
       color: var(--518-red);
     }
     .cart-items-num {
-      margin: 0;
       font-size: 12px;
-      transform: scale(0.75);
+      transform: scale(0.7);
       position: absolute;
       color: var(--132-white);
     }

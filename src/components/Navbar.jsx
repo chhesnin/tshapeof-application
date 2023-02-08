@@ -7,7 +7,7 @@ import logo from '../assets/tshapeof-logo.png';
 import Context from '../Context';
 
 function Navbar() {
-  const { user, toggleSignOpen, handleSignOut } = useContext(Context);
+  const { user, isSignOpen, toggleSignOpen, handleSignOut } = useContext(Context);
   const links = [
     { name: 'pottery', render: '認識陶器' },
     { name: 'products', render: '選購陶器' },
@@ -38,7 +38,10 @@ function Navbar() {
             登出
           </div>
         ) : (
-          <div className="link" onClick={toggleSignOpen} role="presentation">
+          <div
+            className={isSignOpen ? 'link mounted' : 'link'}
+            onClick={toggleSignOpen}
+            role="presentation">
             登入 | 註冊
           </div>
         )}

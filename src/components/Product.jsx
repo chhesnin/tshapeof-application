@@ -34,14 +34,14 @@ function Product({ product, cartItems, toggleFavorite, addToCart, deleteFromCart
     if (user) {
       return (
         <>
-          <h5 className="price" style={{ textDecoration: 'line-through' }}>
+          <h6 className="price" style={{ textDecoration: 'line-through' }}>
             NT ${product.price}
-          </h5>
-          <h5 className="price">會員價: NT${product.price * MEMBER_DISCOUNT}</h5>
+          </h6>
+          <h6 className="price">會員價: NT${product.price * MEMBER_DISCOUNT}</h6>
         </>
       );
     }
-    return <h5 className="price">NT ${product.price}</h5>;
+    return <h6 className="price">NT ${product.price}</h6>;
   }
   return (
     <div className="product">
@@ -56,7 +56,7 @@ function Product({ product, cartItems, toggleFavorite, addToCart, deleteFromCart
         />
         {user && <i className={icon} onClick={event} role="presentation" />}
       </div>
-      <h3 className="name">{product.name}</h3>
+      <h4 className="name">{product.name}</h4>
       {getPriceText()}
       {!user && (
         <button className="form-button" type="button" onClick={toggleSignOpen}>

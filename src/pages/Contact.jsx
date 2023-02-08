@@ -10,7 +10,7 @@ function Contact() {
   const { user } = useContext(Context);
   const initialForm = {
     name: '',
-    email: '',
+    email: user ? user.email : '',
     message: ''
   };
   const { form, ref, setForm, handleChange } = useControlledComponent(initialForm);
@@ -22,7 +22,7 @@ function Contact() {
     console.log(form);
     setTimeout(() => {
       setIsSubmit(false);
-    }, 2000);
+    }, 1500);
     setForm(initialForm);
     ref.current.focus();
   }
@@ -93,7 +93,7 @@ function Contact() {
             提交
           </button>
         </form>
-        {isSubmit && <h6 className="alert">表單已提交！</h6>}
+        <h6 className={isSubmit ? 'alert show' : 'alert'}>表單已提交！</h6>
       </div>
       <Canvas />
     </main>
