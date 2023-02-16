@@ -24,7 +24,7 @@ function Contact() {
       setIsSubmit(false);
     }, 1500);
     setForm(initialForm);
-    ref.current.focus();
+    // ref.current.focus();
   }
   useEffect(() => {
     if (form.name !== '' && form.email !== '' && form.message !== '') {
@@ -85,7 +85,7 @@ function Contact() {
               name="message"
               onChange={handleChange}
               value={form.message}
-              rows="8"
+              rows={window.innerWidth > 576 ? 8 : 6}
               placeholder="messages..."
             />
           </label>

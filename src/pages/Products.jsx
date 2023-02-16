@@ -6,7 +6,7 @@ import CartItem from '../components/CartItem';
 import Context from '../Context';
 
 function Products() {
-  const { MEMBER_DISCOUNT, user } = useContext(Context);
+  const { MEMBER_DISCOUNT, user, toggleSignOpen } = useContext(Context);
   const [allProducts, setAllProducts] = useState(
     JSON.parse(localStorage.getItem('tshapeof-allProducts')) || []
   );
@@ -16,8 +16,14 @@ function Products() {
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [total, setTotal] = useState(0);
   const [isCartIconHover, cartIconRef] = useHover();
-  function handleToggleCart() {
-    setIsCartOpen((prevIsCartOpen) => !prevIsCartOpen);
+  const [cartIconClassName, setCartIconClassName] = useState('');
+  const [cartIconNumClassName, setCartIconNumClassName] = useState('');
+  function handleClickCart() {
+    if (user) {
+      setIsCartOpen((prevIsCartOpen) => !prevIsCartOpen);
+    } else {
+      toggleSignOpen(true);
+    }
   }
   function toggleFavorite(productId) {
     setAllProducts((prevAllProducts) =>
@@ -36,12 +42,6 @@ function Products() {
   function deleteFromCart(productId) {
     setCartItems((prevCartItems) => prevCartItems.filter((item) => item.id !== productId));
   }
-  function getCartIcon() {
-    if (cartItems.length) {
-      return 'ri-shopping-cart-fill ri-fw ri-2x cart';
-    }
-    return 'ri-shopping-cart-line ri-fw ri-2x cart';
-  }
   function calculateTotal() {
     let totalPrice = cartItems
       .map((item) => item.price * MEMBER_DISCOUNT)
@@ -49,18 +49,6 @@ function Products() {
     totalPrice = totalPrice.toLocaleString('zh-TW', { style: 'currency', currency: 'TWD' });
     setTotal(totalPrice);
   }
-  const productElements = allProducts.map((product) => (
-    <Product
-      key={product.id}
-      product={product}
-      cartItems={cartItems}
-      toggleFavorite={toggleFavorite}
-      addToCart={addToCart}
-      deleteFromCart={deleteFromCart} />
-  ));
-  const cartItemElements = cartItems.map((item) => (
-    <CartItem key={item.id} item={item} deleteFromCart={deleteFromCart} />
-  ));
   useEffect(() => {
     // *配合 localStorge 之條件
     if (!allProducts.length) {
@@ -81,18 +69,41 @@ function Products() {
   useEffect(() => {
     localStorage.setItem('tshapeof-allProducts', JSON.stringify(allProducts));
   }, [allProducts]);
+  useEffect(() => {
+    if (user) {
+      if (cartItems.length) {
+        setCartIconClassName('fill');
+        setCartIconNumClassName('');
+      } else {
+        setCartIconClassName('line');
+        setCartIconNumClassName('trans');
+      }
+    } else {
+      setCartIconClassName('line');
+      setCartIconNumClassName('trans');
+    }
+  }, [user, cartItems]);
+  const productElements = allProducts.map((product) => (
+    <Product
+      key={product.id}
+      product={product}
+      cartItems={cartItems}
+      toggleFavorite={toggleFavorite}
+      addToCart={addToCart}
+      deleteFromCart={deleteFromCart} />
+  ));
+  const cartItemElements = cartItems.map((item) => (
+    <CartItem key={item.id} item={item} deleteFromCart={deleteFromCart} />
+  ));
   return (
     <main className="products">
-      {user && (
-        <i
-          className={getCartIcon()}
-          ref={cartIconRef}
-          style={{ color: isCartOpen || isCartIconHover ? '#C64A1D' : '#425D66' }}
-          onClick={handleToggleCart}
-          role="presentation">
-          <h6 className="cart-items-num">{cartItems.length}</h6>
-        </i>
-      )}
+      <i
+        className={`ri-shopping-cart-${cartIconClassName} ri-fw ri-2x cart`}
+        ref={cartIconRef}
+        onClick={handleClickCart}
+        role="presentation">
+        <h6 className={`cart-items-num ${cartIconNumClassName}`}>{cartItems.length}</h6>
+      </i>
       <div className="container">
         <h1 className="title">
           選購陶器
@@ -102,7 +113,7 @@ function Products() {
       </div>
       <div
         className={isCartOpen ? 'cart-page opened' : 'cart-page'}
-        onClick={handleToggleCart}
+        onClick={handleClickCart}
         role="presentation">
         <div className="container">
           <h1 className="title">

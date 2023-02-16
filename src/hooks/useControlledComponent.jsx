@@ -11,7 +11,7 @@ function useControlledComponent(initialForm) {
     }));
   }
   useEffect(() => {
-    if (ref) {
+    if (ref && window.innerWidth > 576) {
       ref.current.focus();
     }
   }, []);

@@ -1,10 +1,13 @@
 import '../style/Home.scss';
 import { useState, useEffect } from 'react';
+import logoTransWhite from '../assets/tshapeof-logo-trans-132-bold.png';
+import useResizeEventListener from '../hooks/useResizeEventListener';
 
 function Home() {
   const [currentImgNum, setCurrentImgNum] = useState(0);
   // *避免重複setTimeout
   const [timer, setTimer] = useState(null);
+  const { isShorterThan576 } = useResizeEventListener();
   function getPointClassName(number) {
     return currentImgNum === number ? 'point active' : 'point';
   }
@@ -14,6 +17,12 @@ function Home() {
     clearTimeout(timer);
     setTimer(null);
   }
+  // useEffect(() => {
+  //   const timeout = setTimeout(() => {
+  //     setCurrentImgNum((prevCurrentImgNum) => (prevCurrentImgNum + 1) % 3);
+  //   }, 10000);
+  //   setTimer(timeout);
+  // }, [currentImgNum]);
   const pointElements = [0, 1, 2].map((number) => (
     <div
       key={number}
@@ -22,12 +31,6 @@ function Home() {
       role="presentation"
     />
   ));
-  useEffect(() => {
-    const timeout = setTimeout(() => {
-      setCurrentImgNum((prevCurrentImgNum) => (prevCurrentImgNum + 1) % 3);
-    }, 10000);
-    setTimer(timeout);
-  }, [currentImgNum]);
   return (
     <main className="home">
       <div className="banner" style={{ left: `${currentImgNum * -100}%` }}>
@@ -35,19 +38,9 @@ function Home() {
         <div className="img-container white-img" />
         <div className="img-container red-img" />
       </div>
-      {/* <h4 className="slogan">
-        <span>|</span>
-        <span> </span>
-        <span>實</span>
-        <span>用</span>
-        <span> </span>
-        <span>簡</span>
-        <span>單</span>
-        <span> </span>
-        <span>有</span>
-        <span>機</span>
-        <span> </span>
-      </h4> */}
+      {(window.innerWidth < 576 || isShorterThan576) && (
+        <img className="logo" src={logoTransWhite} alt="" />
+      )}
       <h4 className="slogan">
         <span>實用</span>
         <span>簡單</span>

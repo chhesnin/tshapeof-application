@@ -1,9 +1,13 @@
 .pottery {
-  left: 276px;
-  width: calc(100% - 276px);
+  width: 100%;
   .container {
-    width: 45%;
+    width: 43%;
     padding: 0px 0px 0px 1px;
+    text-align: center;
+    @media screen and (max-width: 576px) {
+      width: 65%;
+      text-align: center;
+    }
     h3.head, p {
       margin: 0;
     }
@@ -33,6 +37,9 @@
     .img-container {
       width: 100%;
       height: 250px;
+      @media screen and (max-width: 576px) {
+        height: 150px;
+      }
       margin-top: 140px;
       background-image: url(../assets/pottery/pottery-img.jpg);
       background-size: cover;
@@ -40,20 +47,30 @@
     }
   }
   .shape, .color, .final {
-    padding: 55px 0px 80px 0px;
+    padding: 55px 0px 90px 0px;
+    @media screen and (max-width: 1150px) {
+      padding: 55px 0px 65px 0px;
+    }
+    @media screen and (max-width: 576px) {
+      padding: 55px 0px 25px 0px;
+    }
     .grid {
       display: grid;
       grid-template-columns: 1fr 3fr;
       height: 300px;
       margin-top: 65px;
-      @media screen and (max-width:1150px) {
+      @media screen and (max-width: 1150px) {
+        margin-top: 90px;
         height: 400px;
         grid-template-columns: 1fr;
         grid-template-rows: 1fr 4fr;
         .options .options-alert {
           display: none;
         }
-      } 
+      }
+      @media screen and (max-width: 576px) {
+        padding-top: 10px;
+      }
       .options {
         display: flex;
         flex-direction: column;
@@ -62,7 +79,7 @@
         .options-alert {
           position: absolute;
           top: 20px;
-          left: 25px;
+          left: 38px;
         }
         .alert-icon {
           margin-top: 5px;
@@ -75,7 +92,7 @@
           align-items: center;
           input {
             margin-right: 10px;
-            // *
+            // *移除樣式
             appearance: none;
             width: 10px;
             height: 10px;
@@ -107,14 +124,23 @@
     }
   }
   .color {
-    // background-color: var(--132-white);
     background-image: url(../assets/bgi-green-grid.png);
+    @media screen and (max-width: 1150px) {
+      padding: 55px 0px 140px 0px;
+    }
+    @media screen and (max-width: 576px) {
+      padding: 55px 0px 120px 0px;
+    }
     .grid {
       grid-template-columns: 3fr 1fr;
-      @media screen and (max-width:1150px) {
+      @media screen and (max-width: 1150px) {
+        margin-top: 60px;
         height: 450px;
         grid-template-columns: 1fr;
         grid-template-rows: 4fr 1fr;
+      }
+      @media screen and (max-width: 576px) {
+        margin-top: 0px;
       }
       .options {
         label {
@@ -232,8 +258,18 @@
         letter-spacing: 0.5px;
         margin-top: 170px;
         align-self: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
         transition: 0.3s;
         cursor: pointer;
+        @media screen and (max-width: 576px) {
+          width: 60px;
+          height: 60px;
+          border-radius: 60px;
+          font-size: 14px;
+        }
         &:hover {
           background-color: var(--518-red);
         }
@@ -257,19 +293,32 @@
     }
     button.restart {
       position: absolute;
-      top: 92%;
+      top: 90%;
+      @media screen and (max-width: 576px) {
+        top: 86%;
+      }
       left: 50%;
       transform: translate(-50%, -50%);
       border: 1px solid var(--518-red);
       width: 50px;
       height: 50px;
       border-radius: 50px;
-      background-color: rgba(#E9EAE3, 0.5);
+      background-color: rgba(#E9EAE3, 0.6);
       color: var(--518-red);
       font-size: 12px;
       letter-spacing: 0.5px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
       transition: 0.3s;
       cursor: pointer;
+      @media screen and (max-width: 576px) {
+        width: 60px;
+        height: 60px;
+        border-radius: 60px;
+        font-size: 14px;
+      }
       &:hover {
         border: 1px solid var(--132-white);
         background-color: var(--518-red);
@@ -280,11 +329,16 @@
       position: absolute;
       bottom: 0;
       width: 100%;
-      padding: 3px;
+      padding: 5px;
       margin: 0;
-      color: rgba(#E9EAE3, 0.75);
+      color: rgba(#E9EAE3, 0.95);
       font-weight: 100;
-      background-color: rgba(#425D66, 0.3);;
+      background-color: rgba(#425D66, 0.4);
+      @media screen and (max-width: 576px) {
+        font-size: 13px;
+        padding: 10px;
+        color: var(--132-white);
+      }
     }
   }
 }

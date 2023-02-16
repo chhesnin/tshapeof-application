@@ -17,8 +17,10 @@ function CartItem({ item, deleteFromCart }) {
         role="presentation"
       />
       <div className="img-container" style={{ backgroundImage: `url(${item.url})` }} />
-      <h4 className="name">{item.name}</h4>
-      <h4 className="price">NT: ${item.price * MEMBER_DISCOUNT}</h4>
+      <div className="content-container">
+        <h4 className="name">{item.name}</h4>
+        <h4 className="price">NT: ${item.price * MEMBER_DISCOUNT}</h4>
+      </div>
     </div>
   );
 }

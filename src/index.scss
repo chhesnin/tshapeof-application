@@ -9,6 +9,7 @@
   font-family: 'Noto Sans TC', sans-serif;
   box-sizing: border-box;
   position: relative;
+  vertical-align: bottom;
 }
 
 html, body {
@@ -38,6 +39,7 @@ h1.title {
     font-weight: 400;
     color: var(--518-red);
     letter-spacing: 1.5px;
+    top: -2px;
   }
 }
 

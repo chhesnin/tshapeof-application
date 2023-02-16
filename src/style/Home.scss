@@ -1,10 +1,16 @@
 .home {
-  left: 276px;
-  width: calc(100% - 276px);
+  left: 0;
+  width: 100%;
+  // left: 276px;
+  // width: calc(100% - 276px);
   height: 100vh;
   display: flex;
   justify-content: center;
   overflow: hidden;
+  @media screen and (max-width: 576px) {
+    left: 0;
+    width: 100%;
+  }
   // *banner容器需與home分開
   .banner {
     width: 100%;
@@ -13,30 +19,45 @@
     .img-container {
       width: 100%;
       background-size: cover;
+      background-position: left;
       flex-shrink: 0;
-      &.white-img {
-        background-image: url(../assets/home/home-white-img.jpg);
+      @media screen and (max-width: 576px) {
+        background-position: 57% center;
+        
       }
       &.blue-img {
         background-image: url(../assets/home/home-blue-img.jpg);
+      }
+      &.white-img {
+        background-image: url(../assets/home/home-white-img.jpg);
       }
       &.red-img {
         background-image: url(../assets/home/home-red-img.jpg);
       }
     }
   }
+  .logo {
+    position: absolute;
+    top: 12%;
+    width: 100px;
+    opacity: 0.95;
+  }
   .slogan {
     color: var(--132-white);
-    opacity: 0.4;
+    opacity: 0.8;
     display: flex;
     flex-direction: column;
     position: absolute;
-    bottom: 34px;
-    font-size: 12px;
+    transform: translateX(20%);
+    top: 64%;
+    @media screen and (min-width: 576px) {
+      top: 68%;
+    }
+    font-size: 11px;
     font-weight: 500;
     line-height: 20px;
     span {
-      margin: 9px 0px;
+      margin: 10px 0px;
       width: 20px;
     }
   }
@@ -59,16 +80,19 @@
   .points {
     // *df,jcc,aic亦會影響poa的element
     position: absolute;
-    top: 80px;
+    top: 60%;
+    @media screen and (min-width: 576px) {
+      top: 13%;
+    }
     display: flex;
     flex-direction: column;
     .point {
-      width: 9px;
-      height: 9px;
-      border-radius: 9px;
-      // margin: 30px 0px;
+      width: 8px;
+      height: 8px;
+      border-radius: 8px;
+      // margin: 32px 0px;
       background-color: var(--132-white);
-      opacity: 0.3;
+      opacity: 0.4;
       cursor: pointer;
       &.active {
         background-color: var(--518-red);
@@ -82,10 +106,10 @@
   //   bottom: 40px;
   //   display: flex;
   //   .point {
-  //     width: 10px;
-  //     height: 10px;
-  //     border-radius: 10px;
-  //     margin: 0px 30px;
+  //     width: 5px;
+  //     height: 5px;
+  //     border-radius: 5px;
+  //     margin: 0px 10px;
   //     background-color: var(--132-white);
   //     opacity: 0.3;
   //     &.active {

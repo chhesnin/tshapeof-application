@@ -10,7 +10,7 @@ function Product({ product, cartItems, toggleFavorite, addToCart, deleteFromCart
     let value;
     if (product.isFavorite) {
       value = 'ri-heart-fill favorite';
-    } else if (isProductImgHover) {
+    } else if (isProductImgHover || window.innerWidth < 576) {
       value = 'ri-heart-line favorite';
     }
     return value;
@@ -23,7 +23,7 @@ function Product({ product, cartItems, toggleFavorite, addToCart, deleteFromCart
     if (cartHaveThisItem) {
       icon = 'ri-shopping-cart-fill add';
       event = () => deleteFromCart(cartHaveThisItem.id);
-    } else if (isProductImgHover) {
+    } else if (isProductImgHover || window.innerWidth < 576) {
       icon = 'ri-add-circle-line add';
       event = () => addToCart(product);
     }

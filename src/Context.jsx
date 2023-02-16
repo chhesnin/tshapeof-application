@@ -10,8 +10,21 @@ export function ContextProvider({ children }) {
   const [isLoading, SetIsLoading] = useState(false);
   const [user, setUser] = useState(null);
   const [alert, setAlert] = useState(null);
-  function toggleSignOpen() {
-    SetIsSignOpen((prevIsSignOpen) => !prevIsSignOpen);
+  const [isNavbarOpen, setIsNavbarOpen] = useState(true);
+  function toggleSignOpen(payload) {
+    // *不允許強制轉型！
+    if (payload === true || payload === false) {
+      SetIsSignOpen(payload);
+    } else {
+      SetIsSignOpen((prevIsSignOpen) => !prevIsSignOpen);
+    }
+  }
+  function toggleNavbarOpen(payload) {
+    if (payload === true || payload === false) {
+      setIsNavbarOpen(payload);
+    } else {
+      setIsNavbarOpen((prevIsNavbarOpen) => !prevIsNavbarOpen);
+    }
   }
   function signUp(email, password) {
     SetIsLoading(true);
@@ -58,10 +71,12 @@ export function ContextProvider({ children }) {
         isLoading,
         user,
         alert,
+        isNavbarOpen,
         toggleSignOpen,
         signUp,
         signIn,
-        handleSignOut
+        handleSignOut,
+        toggleNavbarOpen,
       }}>
       {children}
     </Context.Provider>
