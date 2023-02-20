@@ -17,12 +17,12 @@ function Home() {
     clearTimeout(timer);
     setTimer(null);
   }
-  // useEffect(() => {
-  //   const timeout = setTimeout(() => {
-  //     setCurrentImgNum((prevCurrentImgNum) => (prevCurrentImgNum + 1) % 3);
-  //   }, 10000);
-  //   setTimer(timeout);
-  // }, [currentImgNum]);
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      setCurrentImgNum((prevCurrentImgNum) => (prevCurrentImgNum + 1) % 3);
+    }, 10000);
+    setTimer(timeout);
+  }, [currentImgNum]);
   const pointElements = [0, 1, 2].map((number) => (
     <div
       key={number}
