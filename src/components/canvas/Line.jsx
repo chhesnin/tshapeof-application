@@ -4,8 +4,8 @@ function Line(ctx, y, mousePos, isMouseDown, recordLineX, handleRecordLineX) {
   for (let deltaY = 0; deltaY < 45; deltaY += 1) {
     // *將角度換算成弧度
     const radians = deltaY * 2 * (Math.PI / 180);
-    // *計算應有的長度(成反比)
-    const length = Math.cos(Math.PI * 2 - radians);
+    // *計算應有的長度
+    const length = Math.cos(radians);
     if (isMouseDown) {
       // *滑鼠 y 位置上下產生對稱的弧線效果
       if (mousePos.y === y + deltaY || mousePos.y === y - deltaY) {
