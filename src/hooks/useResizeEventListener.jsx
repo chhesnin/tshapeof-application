@@ -11,7 +11,6 @@ function useResizeEventListener() {
       toggleNavbarOpen(false);
     } else {
       setIsShorterThan576(false);
-      toggleNavbarOpen(true);
     }
   }
   useEffect(() => {

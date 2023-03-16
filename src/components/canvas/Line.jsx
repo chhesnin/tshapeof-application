@@ -1,7 +1,7 @@
 function Line(ctx, y, mousePos, isMouseDown, recordLineX, handleRecordLineX) {
   const x = recordLineX[y];
   // *弧線塑形效果
-  for (let deltaY = 0; deltaY < 45; deltaY += 1) {
+  for (let deltaY = 0; deltaY <= 45; deltaY += 1) {
     // *將角度換算成弧度
     const radians = deltaY * 2 * (Math.PI / 180);
     // *計算應有的長度

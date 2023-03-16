@@ -32,7 +32,6 @@ function Pottery() {
     }));
   }
   function handleStart() {
-    setIsFinish(false);
     setIsStart(true);
   }
   function handleRestart() {
@@ -276,7 +275,6 @@ function Pottery() {
             <p>
               第二次的燒窯叫做釉燒，一般燒到1200°C以上，胚體經過高溫燒製後與釉料結合，質地會更完整。
             </p>
-            <div className="color-img-container" />
             {isStart ? (
               <h1 ref={tempTextRef} className="temp">
                 {temp}°C

@@ -1,6 +1,6 @@
 import '../style/Products.scss';
 import { useState, useEffect, useContext } from 'react';
-import useHover from '../hooks/useHover';
+// import useHover from '../hooks/useHover';
 import Product from '../components/Product';
 import CartItem from '../components/CartItem';
 import Context from '../Context';
@@ -15,7 +15,7 @@ function Products() {
   );
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [total, setTotal] = useState(0);
-  const [isCartIconHover, cartIconRef] = useHover();
+  // const [isCartIconHover, cartIconRef] = useHover();
   const [cartIconClassName, setCartIconClassName] = useState('');
   const [cartIconNumClassName, setCartIconNumClassName] = useState('');
   function handleClickCart() {
@@ -45,7 +45,7 @@ function Products() {
   function calculateTotal() {
     let totalPrice = cartItems
       .map((item) => item.price * MEMBER_DISCOUNT)
-      .reduce((acc, cur) => acc + cur, 0);
+      .reduce((acc, price) => acc + price, 0);
     totalPrice = totalPrice.toLocaleString('zh-TW', { style: 'currency', currency: 'TWD' });
     setTotal(totalPrice);
   }
@@ -60,15 +60,15 @@ function Products() {
     }
   }, []);
   useEffect(() => {
+    localStorage.setItem('tshapeof-allProducts', JSON.stringify(allProducts));
+  }, [allProducts]);
+  useEffect(() => {
     calculateTotal();
     localStorage.setItem('tshapeof-cartItems', JSON.stringify(cartItems));
   }, [cartItems]);
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }, [isCartOpen]);
-  useEffect(() => {
-    localStorage.setItem('tshapeof-allProducts', JSON.stringify(allProducts));
-  }, [allProducts]);
   useEffect(() => {
     if (user) {
       if (cartItems.length) {
@@ -99,7 +99,7 @@ function Products() {
     <main className="products">
       <i
         className={`ri-shopping-cart-${cartIconClassName} ri-fw ri-2x cart`}
-        ref={cartIconRef}
+        // ref={cartIconRef}
         onClick={handleClickCart}
         role="presentation">
         <h6 className={`cart-items-num ${cartIconNumClassName}`}>{cartItems.length}</h6>
@@ -120,7 +120,7 @@ function Products() {
             購物車
             <span className="subtitle">| Cart</span>
           </h1>
-          {cartItems.length > 0 ? (
+          {cartItems.length ? (
             <div className="cart-item-container">{cartItemElements}</div>
           ) : (
             <h4 className="alert">You have no items in your cart.</h4>

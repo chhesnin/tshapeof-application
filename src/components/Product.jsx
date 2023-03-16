@@ -6,30 +6,30 @@ import Context from '../Context';
 function Product({ product, cartItems, toggleFavorite, addToCart, deleteFromCart }) {
   const { MEMBER_DISCOUNT, user, toggleSignOpen } = useContext(Context);
   const [isProductImgHover, productImgRef] = useHover();
-  function getHeartIcon() {
-    let value;
+  function getHeartIconClassName() {
+    let heartIconClassName;
     if (product.isFavorite) {
-      value = 'ri-heart-fill favorite';
+      heartIconClassName = 'ri-heart-fill favorite';
     } else if (isProductImgHover || window.innerWidth < 576) {
-      value = 'ri-heart-line favorite';
+      heartIconClassName = 'ri-heart-line favorite';
     }
-    return value;
+    return heartIconClassName;
   }
   // *同時處理兩個 icon 的樣式及方法
   function handleAddIcon() {
-    let icon;
-    let event;
+    let addIconClassName;
+    let addIconClickEvent;
     const cartHaveThisItem = cartItems.find((item) => item.id === product.id);
     if (cartHaveThisItem) {
-      icon = 'ri-shopping-cart-fill add';
-      event = () => deleteFromCart(cartHaveThisItem.id);
+      addIconClassName = 'ri-shopping-cart-fill add';
+      addIconClickEvent = () => deleteFromCart(cartHaveThisItem.id);
     } else if (isProductImgHover || window.innerWidth < 576) {
-      icon = 'ri-add-circle-line add';
-      event = () => addToCart(product);
+      addIconClassName = 'ri-add-circle-line add';
+      addIconClickEvent = () => addToCart(product);
     }
-    return { icon, event };
+    return { addIconClassName, addIconClickEvent };
   }
-  const { icon, event } = handleAddIcon();
+  const { addIconClassName, addIconClickEvent } = handleAddIcon();
   function getPriceText() {
     if (user) {
       return (
@@ -50,11 +50,11 @@ function Product({ product, cartItems, toggleFavorite, addToCart, deleteFromCart
         className="img-container"
         style={{ backgroundImage: `url(${product.url})` }}>
         <i
-          className={getHeartIcon()}
+          className={getHeartIconClassName()}
           onClick={() => toggleFavorite(product.id)}
           role="presentation"
         />
-        {user && <i className={icon} onClick={event} role="presentation" />}
+        {user && <i className={addIconClassName} onClick={addIconClickEvent} role="presentation" />}
       </div>
       <h4 className="name">{product.name}</h4>
       {getPriceText()}

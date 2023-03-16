@@ -19,7 +19,9 @@ function Navbar() {
   const [mounted, setMounted] = useState('');
   const { isShorterThan576 } = useResizeEventListener();
   function handleTogglePage(name) {
-    setMounted(name);
+    if (name) {
+      setMounted(name);
+    }
     toggleNavbarOpen();
     toggleSignOpen(false);
   }
@@ -52,10 +54,10 @@ function Navbar() {
       </div>
       <nav className={isNavbarOpen ? 'navbar' : `navbar close`}>
         <div className="logo-container">
-          <Link to="/" onClick={toggleNavbarOpen}>
+          <Link to="/" onClick={handleTogglePage}>
             <img
               src={window.innerWidth < 576 || isShorterThan576 ? logoPottery : logo}
-              alt=""
+              alt="Logo"
               className="logo"
             />
           </Link>

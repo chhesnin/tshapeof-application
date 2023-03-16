@@ -5,7 +5,7 @@ import useResizeEventListener from '../hooks/useResizeEventListener';
 
 function Home() {
   const [currentImgNum, setCurrentImgNum] = useState(0);
-  // *避免重複setTimeout
+  // *避免重複 setTimeout
   const [timer, setTimer] = useState(null);
   const { isShorterThan576 } = useResizeEventListener();
   function getPointClassName(number) {
@@ -39,7 +39,7 @@ function Home() {
         <div className="img-container red-img" />
       </div>
       {(window.innerWidth < 576 || isShorterThan576) && (
-        <img className="logo" src={logoTransWhite} alt="" />
+        <img className="logo" src={logoTransWhite} alt="Logo" />
       )}
       <h4 className="slogan">
         <span>實用</span>

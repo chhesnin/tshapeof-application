@@ -9,6 +9,7 @@ function Canvas() {
   function initalRecordLineX() {
     const obj = {};
     for (let y = 0; y < window.innerHeight; y += 1) {
+      // obj = { ...obj, [y]: 50 };
       Object.assign(obj, { [y]: 50 });
     }
     return obj;
@@ -34,10 +35,10 @@ function Canvas() {
   // function handleMouseLeave() {
   //   setIsMouseEnter(false);
   // }
-  function handleRecordLineX(mousePosY, num) {
+  function handleRecordLineX(mousePosY, length) {
     setRecordLineX((prevRecordLineX) => ({
       ...prevRecordLineX,
-      [mousePosY]: prevRecordLineX[mousePosY] + num
+      [mousePosY]: prevRecordLineX[mousePosY] + length
     }));
   }
   function handleRestart() {
@@ -62,9 +63,10 @@ function Canvas() {
     render();
   }, [mousePos]);
   useEffect(() => {
-    window.addEventListener('mousemove', handleMouseMove);
+    const canvas = canvasRef.current;
+    canvas.addEventListener('mousemove', handleMouseMove);
     return () => {
-      window.removeEventListener('mousemove', handleMouseMove);
+      canvas.removeEventListener('mousemove', handleMouseMove);
     };
   }, []);
   useEffect(() => {
